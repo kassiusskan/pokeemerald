@@ -96,8 +96,12 @@
 #define BAG_ITEMS_COUNT 30
 #define BAG_KEYITEMS_COUNT 30
 #define BAG_POKEBALLS_COUNT 16
-#define BAG_TMHM_COUNT 64
+#define BAG_TMHM_COUNT 100
 #define BAG_BERRIES_COUNT 46
+
+//tx_registered_items_menu
+#define REGISTERED_ITEMS_MAX 10
+//add multi item register with only select button
 
 // Number of facilities for Ranking Hall.
 // 7 facilities for single mode + tower double mode + tower multi mode.
