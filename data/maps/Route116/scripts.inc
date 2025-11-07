@@ -112,7 +112,7 @@ Route116_Movement_DevonEmployeeExitEast:
 	step_end
 
 Route116_EventScript_RouteSignRustboro::
-	msgbox Route116_Text_RouteSignRustboro, MSGBOX_SIGN //AQUI
+	msgbox Route116_Text_RouteSignRustboro, MSGBOX_SIGN
 	end
 
 Route116_EventScript_RusturfTunnelSign::

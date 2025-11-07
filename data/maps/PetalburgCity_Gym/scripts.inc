@@ -110,7 +110,6 @@ PetalburgCity_Gym_EventScript_Norman::
 	case 6, PetalburgCity_Gym_EventScript_NormanBattle
 	case 7, PetalburgCity_Gym_EventScript_NormanPostBattle
 	case 8, PetalburgCity_Gym_EventScript_NormanRematch
-	hidefollower
 	msgbox PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon, MSGBOX_DEFAULT
 	closemessage
 	switch VAR_FACING
@@ -173,13 +172,13 @@ PetalburgCity_Gym_EventScript_BeginWallyTutorial::
 	call_if_eq VAR_0x8008, 3, PetalburgCity_Gym_EventScript_WallyFacePlayer
 	msgbox PetalburgCity_Gym_Text_WouldYouReallyComeWithMe, MSGBOX_DEFAULT
 	closemessage
-//	setflag FLAG_DONT_TRANSITION_MUSIC
-//	playbgm MUS_FOLLOW_ME, FALSE
-//	call_if_eq VAR_0x8008, 0, PetalburgCity_Gym_EventScript_ExitGymWithWallySouth
-//	call_if_eq VAR_0x8008, 1, PetalburgCity_Gym_EventScript_ExitGymWithWallyNorth
-//	call_if_eq VAR_0x8008, 2, PetalburgCity_Gym_EventScript_ExitGymWithWallyWest
-//	call_if_eq VAR_0x8008, 3, PetalburgCity_Gym_EventScript_ExitGymWithWallyEast
-//	removeobject LOCALID_PETALBURG_GYM_WALLY
+	setflag FLAG_DONT_TRANSITION_MUSIC
+	playbgm MUS_FOLLOW_ME, FALSE
+	call_if_eq VAR_0x8008, 0, PetalburgCity_Gym_EventScript_ExitGymWithWallySouth
+	call_if_eq VAR_0x8008, 1, PetalburgCity_Gym_EventScript_ExitGymWithWallyNorth
+	call_if_eq VAR_0x8008, 2, PetalburgCity_Gym_EventScript_ExitGymWithWallyWest
+	call_if_eq VAR_0x8008, 3, PetalburgCity_Gym_EventScript_ExitGymWithWallyEast
+	removeobject LOCALID_PETALBURG_GYM_WALLY
 	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM
 	setvar VAR_PETALBURG_GYM_STATE, 1
 	setvar VAR_PETALBURG_CITY_STATE, 2
@@ -187,49 +186,10 @@ PetalburgCity_Gym_EventScript_BeginWallyTutorial::
 	clearflag FLAG_HIDE_PETALBURG_GYM_WALLY
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL
 	special InitBirchState
-//-------------------------------
-	fadescreen FADE_TO_BLACK
-	fadeoutbgm 1
-		delay 50
-	playse SE_BALL
-	waitse
-	delay 50
-	playse SE_BALL
-	waitse
-	delay 50
-	playse SE_BALL
-	waitse
-	delay 50
-	playse SE_RG_BALL_CLICK
-	waitse
-	delay 20
-	playse MUS_RG_CAUGHT_INTRO
-	message PetalburgCity_Gym_Text_PlayerHelpedWally
-	waitse
-	closemessage
-	delay 50
-
-	// Put player and Wally into a position they would normally be after the tutorial
-	setobjectxy OBJ_EVENT_ID_PLAYER, 4, 108
-	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
-	setobjectxy LOCALID_PETALBURG_GYM_WALLY, 5, 108
-	turnobject LOCALID_PETALBURG_GYM_WALLY, DIR_NORTH
-
-	fadescreen FADE_FROM_BLACK
-	fadeinbgm 1
-
-	// Manually set VAR_PETALBURG_CITY_STATE to 3; this was previously done in
-	// in PetalburgCity_EventScript_WallyTutorial, but we have removed it
-	// (it also set VAR_PETALBURG_GYM_STATE to 1 but I don't think that's important,
-	// as it gets set to 2 in PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial shortly)
-	setvar VAR_PETALBURG_CITY_STATE, 3
-	goto PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial
+	warp MAP_PETALBURG_CITY, 15, 8
+	waitstate
+	release
 	end
-	
-//	warp MAP_PETALBURG_CITY, 15, 8
-//	waitstate
-//	release
-//	end
 
 PetalburgCity_Gym_EventScript_WallyArriveSouth::
 	applymovement LOCALID_PETALBURG_GYM_NORMAN, Common_Movement_WalkInPlaceFasterDown
@@ -1629,5 +1589,3 @@ PetalburgCity_Gym_Text_NormanRematchNeedTwoMons:
 	.string "Sorry, but you'll have to come back\n"
 	.string "with at least two POKéMON.$"
 
-PetalburgCity_Gym_Text_PlayerHelpedWally:
-	.string "{PLAYER} helped Wally catch a Ralts!$"

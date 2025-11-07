@@ -67,29 +67,28 @@ RustboroCity_EventScript_ScientistAddMatchCall::
 	delay 20
 	goto RustboroCity_EventScript_MatchCallTutorial
 
-//RustboroCity_EventScript_PleaseSelectPokenav::
-//	msgbox RustboroCity_Text_PleaseSelectPokenav, MSGBOX_DEFAULT
-//	closemessage
-//	delay 10
-//	goto RustboroCity_EventScript_MatchCallTutorial
+RustboroCity_EventScript_PleaseSelectPokenav::
+	msgbox RustboroCity_Text_PleaseSelectPokenav, MSGBOX_DEFAULT
+	closemessage
+	delay 10
+	goto RustboroCity_EventScript_MatchCallTutorial
 
 RustboroCity_EventScript_MatchCallTutorial::
 	setflag FLAG_ADDED_MATCH_CALL_TO_POKENAV
-	setflag FLAG_DEXNAV_GET
-//	special ScriptMenu_CreateStartMenuForPokenavTutorial
-//	waitstate
-//	switch VAR_RESULT
-//	case 0, RustboroCity_EventScript_PleaseSelectPokenav
-//	case 1, RustboroCity_EventScript_PleaseSelectPokenav
-//	case 2, RustboroCity_EventScript_PleaseSelectPokenav
-//	case 4, RustboroCity_EventScript_PleaseSelectPokenav
-//	case 5, RustboroCity_EventScript_PleaseSelectPokenav
-//	case 6, RustboroCity_EventScript_PleaseSelectPokenav
-//	case 7, RustboroCity_EventScript_PleaseSelectPokenav
-//	case MULTI_B_PRESSED, RustboroCity_EventScript_PleaseSelectPokenav
-//	special OpenPokenavForTutorial
-//	waitstate
-//	delay 20
+	special ScriptMenu_CreateStartMenuForPokenavTutorial
+	waitstate
+	switch VAR_RESULT
+	case 0, RustboroCity_EventScript_PleaseSelectPokenav
+	case 1, RustboroCity_EventScript_PleaseSelectPokenav
+	case 2, RustboroCity_EventScript_PleaseSelectPokenav
+	case 4, RustboroCity_EventScript_PleaseSelectPokenav
+	case 5, RustboroCity_EventScript_PleaseSelectPokenav
+	case 6, RustboroCity_EventScript_PleaseSelectPokenav
+	case 7, RustboroCity_EventScript_PleaseSelectPokenav
+	case MULTI_B_PRESSED, RustboroCity_EventScript_PleaseSelectPokenav
+	special OpenPokenavForTutorial
+	waitstate
+	delay 20
 	msgbox RustboroCity_Text_IdBetterGetBackToWork, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_RUSTBORO_SCIENTIST, RustboroCity_Movement_ScientistLeave
@@ -1273,20 +1272,13 @@ RustboroCity_Text_AddedMatchCallPleaseCallMrStone:
 	.string "{PLAYER}, our PRESIDENT STONE should\n"
 	.string "be registered in your POKéNAV.\p"
 	.string "Test it out.\n"
-	.string "Please give our PRESIDENT a call,\l"
-	.string "as soon as possible.$"
+	.string "Please give our PRESIDENT a call.$"
 
 RustboroCity_Text_PleaseSelectPokenav:
 	.string "Please select the POKéNAV.$"
 
 RustboroCity_Text_IdBetterGetBackToWork:
-	.string "Another thing {PLAYER}!\p"
-	.string "I've been developing a device\n"
-	.string "that lets you search for specific\p"
-	.string "Pokémon on each route called DEXNAV,\n"
-	.string "and it is in the START menu\l"
-	.string "please test it for me.\n"
-	.string "Very well, I need to get back to work.\l"
+	.string "Okay, I'd better get back to work.\n"
 	.string "Please take care, {PLAYER}!$"
 
 RustboroCity_Text_YouCanHave2On2Battle:

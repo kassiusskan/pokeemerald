@@ -2287,38 +2287,26 @@ bool8 ScrCmd_setmonmove(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
+bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
 {
-    enum FieldMove fieldMove = ScriptReadByte(ctx);
-    bool32 doUnlockedCheck = ScriptReadByte(ctx);
-    u16 move;
+    u32 i;
+    u32 move = ScriptReadHalfword(ctx);
+    u32 tmItem = MoveToHM(move);
+    bool32 hasInBag = (tmItem && CheckBagHasItem(tmItem, 1));
 
     Script_RequestEffects(SCREFF_V1);
 
     gSpecialVar_Result = PARTY_SIZE;
-    if (doUnlockedCheck && !IsFieldMoveUnlocked(fieldMove))
-        return FALSE;
-
-    move = FieldMove_GetMoveId(fieldMove);
-    for (u32 i = 0; i < PARTY_SIZE; i++)
+    
+    for (i = 0; i < PARTY_SIZE; i++)
     {
-        u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
+        u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
         if (!species)
             break;
-        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && MonKnowsMove(&gPlayerParty[i], move) == TRUE)
+        
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
         {
-            gSpecialVar_Result = i;
-            gSpecialVar_0x8004 = species;
-            break;
-        }
-    }
-	    if (gSpecialVar_Result == PARTY_SIZE && (CheckBagHasItem(MoveToHM(moveId), 1))){
-        for (i = 0; i < PARTY_SIZE; i++)
-        {
-            u16 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
-            if (!species)
-                break;
-            if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && CanMonLearnTMHM(&gPlayerParty[i], MoveToHM(moveId) - ITEM_TM01))
+            if ((hasInBag && CanLearnTeachableMove(species, move)) || MonKnowsMove(&gPlayerParty[i], move))
             {
                 gSpecialVar_Result = i;
                 gSpecialVar_0x8004 = species;
@@ -2326,7 +2314,6 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
             }
         }
     }
-
     return FALSE;
 }
 

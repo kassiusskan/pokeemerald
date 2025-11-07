@@ -1047,6 +1047,7 @@ bool32 Overworld_IsBikingAllowed(void)
     else
         return TRUE;
 }
+
 static bool8 CanLearnFlashInParty(void)
 {
     u8 i;
@@ -1054,12 +1055,11 @@ static bool8 CanLearnFlashInParty(void)
     {
         if (!GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL))
             break;
-        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && CanMonLearnTMHM(&gPlayerParty[i], ITEM_HM_FLASH - ITEM_TM_FOCUS_PUNCH))
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && CanLearnTeachableMove(GetMonData(&gPlayerParty[i], MON_DATA_SPECIES), ITEM_HM_FLASH - ITEM_TM_FOCUS_PUNCH))
             return TRUE;
     }
     return FALSE;
 }
-
 
 // Flash level of 0 is fully bright
 // Flash level of 1 is the largest flash radius
@@ -1067,6 +1067,8 @@ static bool8 CanLearnFlashInParty(void)
 // Flash level of 8 is fully black
 void SetDefaultFlashLevel(void)
 {
+	 if (CheckBagHasItem(ITEM_HM_FLASH ,1) && CanLearnFlashInParty())
+        FlagSet(FLAG_SYS_USE_FLASH);
     if (!gMapHeader.cave)
         gSaveBlock1Ptr->flashLevel = 0;
     else if (FlagGet(FLAG_SYS_USE_FLASH))
