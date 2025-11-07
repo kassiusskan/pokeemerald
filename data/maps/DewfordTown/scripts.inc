@@ -67,6 +67,12 @@ DewfordTown_EventScript_GymSign::
 
 DewfordTown_EventScript_HallSign::
 	msgbox DewfordTown_Text_HallSign, MSGBOX_SIGN
+	//showmonpic SPECIES_BULBASAUR, 10, 2
+	//waitbuttonpress 
+	//hidemonpic
+	//showmonpic SPECIES_PIKACHU 10, 2
+	//waitbuttonpress 
+	//hidemonpic
 	end
 
 DewfordTown_EventScript_OldRodFisherman::

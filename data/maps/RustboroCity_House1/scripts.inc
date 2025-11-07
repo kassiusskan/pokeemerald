@@ -50,10 +50,10 @@ RustboroCity_House1_EventScript_Hiker::
 	end
 
 RustboroCity_House1_Text_IllTradeIfYouWant:
-	.string "Huh? My POKéMON is cute?\n"
-	.string "Sure, I knew that.\p"
-	.string "But if you really want, I'm willing\n"
-	.string "to trade it to you.\p"
+	.string "My grandfather gave me this POKEMON\n"
+	.string "But it's an old form of it\p"
+	.string "If you have its normal form, I'm willing\n"
+	.string "to trade it with you.\p"
 	.string "I'll trade you my {STR_VAR_2} for\n"
 	.string "a {STR_VAR_1} if you want.$"
 

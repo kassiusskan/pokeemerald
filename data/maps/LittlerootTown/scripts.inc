@@ -156,7 +156,7 @@ LittlerootTown_EventScript_GoInsideWithMom::
 	waitmovement 0
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE
 	setvar VAR_LITTLEROOT_INTRO_STATE, 3
-	hideplayer
+	hideobjectat LOCALID_PLAYER, 0
 	closedoor VAR_0x8004, VAR_0x8005
 	waitdooranim
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN
@@ -888,6 +888,7 @@ LittlerootTown_EventScript_Mom::
 LittlerootTown_EventScript_SetReceivedRunningShoes::
 	removeobject LOCALID_LITTLEROOT_MOM
 	setflag FLAG_SYS_B_DASH
+	//setflag FLAG_DEXNAV_GET
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	release
 	end

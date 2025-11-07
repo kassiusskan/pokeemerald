@@ -5392,6 +5392,46 @@ bool8 BoxMonKnowsMove(struct BoxPokemon *boxMon, u16 move)
     return FALSE;
 }
 
+int MoveToHM(u16 move)
+{
+    u8 i;
+    int item;
+    switch (move)
+    {
+    case MOVE_SECRET_POWER:
+        item = ITEM_TM_SECRET_POWER;
+        break;
+    case MOVE_CUT:
+        item = ITEM_HM_CUT;
+        break;
+    case MOVE_FLY:
+        item = ITEM_HM_FLY;
+        break;
+    case MOVE_SURF:
+        item = ITEM_HM_SURF;
+        break;
+    case MOVE_STRENGTH:
+        item = ITEM_HM_STRENGTH;
+        break;
+    case MOVE_FLASH:
+        item = ITEM_HM_FLASH;
+        break;
+    case MOVE_ROCK_SMASH:
+        item = ITEM_HM_ROCK_SMASH;
+        break;
+    case MOVE_WATERFALL:
+        item = ITEM_HM_WATERFALL;
+        break;
+    case MOVE_DIVE:
+        item = ITEM_HM_DIVE;
+        break;
+    default:
+        item = 0;
+        break;
+    }
+    return item;
+}
+
 static void DisplayLearnMoveMessage(const u8 *str)
 {
     StringExpandPlaceholders(gStringVar4, str);

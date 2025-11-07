@@ -76,6 +76,8 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "item.h"
+#include "constants/items.h"
 
 STATIC_ASSERT((B_FLAG_FOLLOWERS_DISABLED == 0 || OW_FOLLOWERS_ENABLED), FollowersFlagAssignedWithoutEnablingThem);
 
@@ -178,6 +180,7 @@ static void CB1_OverworldLink(void);
 static void SetKeyInterceptCallback(u16 (*func)(u32));
 static void SetFieldVBlankCallback(void);
 static void FieldClearVBlankHBlankCallbacks(void);
+static bool8 CanLearnFlashInParty(void);
 static void TransitionMapMusic(void);
 static u8 GetAdjustedInitialTransitionFlags(struct InitialPlayerAvatarState *playerStruct, u16 metatileBehavior, enum MapType mapType);
 static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStruct, u8 transitionFlags, u16 metatileBehavior, enum MapType mapType);
@@ -1044,6 +1047,19 @@ bool32 Overworld_IsBikingAllowed(void)
     else
         return TRUE;
 }
+static bool8 CanLearnFlashInParty(void)
+{
+    u8 i;
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL))
+            break;
+        if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG) && CanMonLearnTMHM(&gPlayerParty[i], ITEM_HM_FLASH - ITEM_TM_FOCUS_PUNCH))
+            return TRUE;
+    }
+    return FALSE;
+}
+
 
 // Flash level of 0 is fully bright
 // Flash level of 1 is the largest flash radius
