@@ -10936,7 +10936,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_TM_FOCUS_PUNCH] =
     {
-        .name = ITEM_NAME("TM01"),
+        .name = ITEM_NAME("TM01 - FOCUS PUNCH"),
         .price = 3000,
         .description = COMPOUND_STRING(
             "Powerful, but makes\n"
@@ -12203,7 +12203,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_CUT] =
     {
-        .name = ITEM_NAME("HM01"),
+        .name = ITEM_NAME("HM01 - Cut"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Attacks the foe\n"
@@ -12217,7 +12217,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_FLY] =
     {
-        .name = ITEM_NAME("HM02"),
+        .name = ITEM_NAME("HM02 - Fly"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Flies up on the\n"
@@ -12231,7 +12231,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_SURF] =
     {
-        .name = ITEM_NAME("HM03"),
+        .name = ITEM_NAME("HM03 - Surf"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Creates a huge\n"
@@ -12245,7 +12245,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_STRENGTH] =
     {
-        .name = ITEM_NAME("HM04"),
+        .name = ITEM_NAME("HM04 - Strength"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Builds enormous\n"
@@ -12259,7 +12259,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_FLASH] =
     {
-        .name = ITEM_NAME("HM05"),
+        .name = ITEM_NAME("HM05 - Flash"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Looses a powerful\n"
@@ -12273,7 +12273,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_ROCK_SMASH] =
     {
-        .name = ITEM_NAME("HM06"),
+        .name = ITEM_NAME("HM06 - Rock Smash"),
         .price = 0,
         .description = COMPOUND_STRING(
             "A rock-crushingly\n"
@@ -12287,7 +12287,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_WATERFALL] =
     {
-        .name = ITEM_NAME("HM07"),
+        .name = ITEM_NAME("HM07 - Waterfall"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Attacks the foe\n"
@@ -12301,7 +12301,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_HM_DIVE] =
     {
-        .name = ITEM_NAME("HM08"),
+        .name = ITEM_NAME("HM08 - Dive"),
         .price = 0,
         .description = COMPOUND_STRING(
             "Dives underwater\n"
