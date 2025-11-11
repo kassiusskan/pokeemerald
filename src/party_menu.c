@@ -5394,7 +5394,7 @@ bool8 BoxMonKnowsMove(struct BoxPokemon *boxMon, u16 move)
 
 int MoveToHM(u16 move)
 {
-    int item;
+    u16 item;
     switch (move)
     {
     case MOVE_SECRET_POWER:
@@ -5428,7 +5428,8 @@ int MoveToHM(u16 move)
         item = 0;
         break;
     }
-    return item;
+    
+    return CheckBagHasItem(item, 1);
 }
 
 static void DisplayLearnMoveMessage(const u8 *str)

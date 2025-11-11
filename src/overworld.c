@@ -1065,6 +1065,7 @@ static bool8 CanLearnFlashInParty(void)
 // Flash level of 1 is the largest flash radius
 // Flash level of 7 is the smallest flash radius
 // Flash level of 8 is fully black
+
 void SetDefaultFlashLevel(void)
 {
 	 if (CheckBagHasItem(ITEM_HM_FLASH ,1) && CanLearnFlashInParty())

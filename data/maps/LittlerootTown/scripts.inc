@@ -888,6 +888,7 @@ LittlerootTown_EventScript_Mom::
 LittlerootTown_EventScript_SetReceivedRunningShoes::
 	removeobject LOCALID_LITTLEROOT_MOM
 	setflag FLAG_SYS_B_DASH
+	//setflag FLAG_DEXNAV_GET
 	setvar VAR_LITTLEROOT_TOWN_STATE, 4
 	release
 	end
@@ -939,6 +940,9 @@ LittlerootTown_Text_ExplainRunningShoes:
 	.string "instructions.\p"
 	.string "“Press the B Button while wearing these\n"
 	.string "RUNNING SHOES to run extra-fast!\p"
+	.string "“If you don't want to keep pressing\n"
+	.string "B Button to run, use the L button to \p"
+	.string "activateand deactivate this function.”\n"
 	.string "“Slip on these RUNNING SHOES and race\n"
 	.string "in the great outdoors!”$"
 

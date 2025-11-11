@@ -2408,40 +2408,57 @@ static u32 CheckTargetTypeEffectiveness(u32 battler)
     return foeEffectiveness; // fallthrough for any other circumstance
 }
 
+struct
+{
+    const u8 *icon;
+    u16 textColor;
+    u16 shadowColor;
+} static const sEffectivenessData[] =
+{
+    [EFFECTIVENESS_CANNOT_VIEW] = { .icon = COMPOUND_STRING(""), }, // No icon
+    [EFFECTIVENESS_NO_EFFECT] =
+    {
+        .icon = COMPOUND_STRING("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 9 14 8}{BIG_MULT_X}"),
+        .textColor = RGB(30, 27, 19),
+        .shadowColor = RGB(28, 8, 8),
+    },
+    [EFFECTIVENESS_NOT_VERY_EFFECTIVE] =
+    {
+        .icon = COMPOUND_STRING("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 9 14 8}{DOWN_ARROW_2}"),
+        .textColor = RGB(31, 30, 17),
+        .shadowColor = RGB(29, 27, 0),
+    },
+    [EFFECTIVENESS_NORMAL] =
+    {
+        .icon = COMPOUND_STRING("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 9 14 8}{CIRCLE_HOLLOW}"),
+        .textColor = RGB(24, 24, 23),
+        .shadowColor = RGB(9, 9, 9),
+    },
+    [EFFECTIVENESS_SUPER_EFFECTIVE] =
+    {
+        .icon = COMPOUND_STRING("{PALETTE 5}{COLOR_HIGHLIGHT_SHADOW 9 14 8}{UP_ARROW_2}"),
+        .textColor = RGB(18, 30, 18), 
+        .shadowColor = RGB(11, 19, 8),
+    },
+};
+
 static void MoveSelectionDisplayMoveEffectiveness(u32 foeEffectiveness, u32 battler)
 {
-    static const u8 noIcon[] =  _("");
-   static const u8 effectiveIcon[] =  _("{CIRCLE_HOLLOW}");
-    static const u8 superEffectiveIcon[] =  _("{COLOR 06}{UP_ARROW_2}");
-    static const u8 notVeryEffectiveIcon[] =  _("{COLOR 03}{DOWN_ARROW_2}");
-    static const u8 immuneIcon[] =  _("{COLOR 01}{BIG_MULT_X}");
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
-    u8 *txtPtr;
-
-    txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfacePP);
+    u8 *txtPtr = StringCopy(gDisplayedStringBattle, gText_MoveInterfacePP);
 
     if (!IsBattleMoveStatus(moveInfo->moves[gMoveSelectionCursor[battler]]))
     {
-        switch (foeEffectiveness)
+        StringCopy(txtPtr, sEffectivenessData[foeEffectiveness].icon);
+        
+        if (foeEffectiveness != EFFECTIVENESS_CANNOT_VIEW)
         {
-        case EFFECTIVENESS_SUPER_EFFECTIVE:
-            StringCopy(txtPtr, superEffectiveIcon);
-            break;
-        case EFFECTIVENESS_NOT_VERY_EFFECTIVE:
-            StringCopy(txtPtr, notVeryEffectiveIcon);
-            break;
-        case EFFECTIVENESS_NO_EFFECT:
-            StringCopy(txtPtr, immuneIcon);
-            break;
-        case EFFECTIVENESS_NORMAL:
-            StringCopy(txtPtr, effectiveIcon);
-            break;
-        default:
-        case EFFECTIVENESS_CANNOT_VIEW:
-            StringCopy(txtPtr, noIcon);
-            break;
+            gPlttBufferUnfaded[88] = sEffectivenessData[foeEffectiveness].textColor;
+            gPlttBufferUnfaded[89] = sEffectivenessData[foeEffectiveness].shadowColor;
+            
+            CpuCopy16(&gPlttBufferUnfaded[88], &gPlttBufferFaded[88], sizeof(u16));
+            CpuCopy16(&gPlttBufferUnfaded[89], &gPlttBufferFaded[89], sizeof(u16));
         }
     }
-
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP);
 }

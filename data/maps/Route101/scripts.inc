@@ -294,6 +294,19 @@ Route101_Text_WildPokemonInTallGrass:
 	.string "to go into the tall grass and search.$"
 
 Route101_Text_RouteSign:
-	.string "ROUTE 101\n"
+	.string "Welcome to Route 101, you can \n"
+	.string "find the following Pokémon here\p"
+	.string "Ratata - 20%\n"
+	.string "Poochyena - 20%\p"
+	.string "Pidgey - 10%\n"
+	.string "Meowth - 10%\p"
+	.string "Growlithe - 10%\n"
+	.string "Skitty- 10%\p"
+	.string "Sentret - 5%\n"
+	.string "Lillipup - 5%\p"
+	.string "Eevee - 4%\n"
+	.string "Glameow - 4%\p"
+	.string "Riolu - 1%\n"
+	.string "Snubbull - 1%\p"
 	.string "{UP_ARROW} OLDALE TOWN$"
 

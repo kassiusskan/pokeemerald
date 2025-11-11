@@ -15,7 +15,7 @@ SlateportCity_EventScript_EnterSlateport::
 	setvar VAR_CONTEST_HALL_STATE, 0
 	setflag FLAG_HIDE_SLATEPORT_CITY_CONTEST_REPORTER
 	return
-
+	
 SlateportCity_EventScript_MovePeopleForSternInterview::
 	setobjectxyperm LOCALID_SLATEPORT_CAPT_STERN, 28, 13
 	setobjectxyperm LOCALID_SLATEPORT_OLD_WOMAN, 25, 13
@@ -124,7 +124,7 @@ SlateportCity_EventScript_EnergyGuru::
 	end
 
 	.align 2
-SlateportCity_Pokemart_EnergyGuru:
+SlateportCity_Pokemart_EnergyGuru:// mart
 	.2byte ITEM_PROTEIN
 	.2byte ITEM_IRON
 	.2byte ITEM_CARBOS
@@ -479,16 +479,16 @@ SlateportCity_EventScript_DollClerk::
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemartdecoration SlateportCity_PokemartDecor_Dolls
+	pokemart SlateportCity_PokemartDecor_Dolls
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
 
 	.align 2
 SlateportCity_PokemartDecor_Dolls:
-	.2byte DECOR_AZURILL_DOLL
-	.2byte DECOR_MARILL_DOLL
-	.2byte DECOR_SKITTY_DOLL
+	.2byte ITEM_LONELY_MINT
+	.2byte ITEM_ADAMANT_MINT
+	.2byte ITEM_NAUGHTY_MINT
 	pokemartlistend
 
 SlateportCity_EventScript_ComeBackWithSecretPower::
@@ -508,7 +508,7 @@ SlateportCity_EventScript_DecorClerk::
 	end
 
 	.align 2
-SlateportCity_PokemartDecor:
+SlateportCity_PokemartDecor: //mart
 	.2byte DECOR_RED_BRICK
 	.2byte DECOR_BLUE_BRICK
 	.2byte DECOR_YELLOW_BRICK
@@ -536,7 +536,7 @@ SlateportCity_EventScript_PowerTMClerk::
 	end
 
 	.align 2
-SlateportCity_Pokemart_PowerTMs:
+SlateportCity_Pokemart_PowerTMs: //mart
 	.2byte ITEM_TM_HIDDEN_POWER
 	.2byte ITEM_TM_SECRET_POWER
 	pokemartlistend

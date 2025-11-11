@@ -75,6 +75,7 @@ static EWRAM_DATA u16 sFieldEffectScriptId = 0;
 
 static u8 sBrailleWindowId;
 static bool8 sIsScriptedWildDouble;
+int MoveToHM(u16 move);
 
 extern const SpecialFunc gSpecials[];
 extern const u8 *gStdScripts[];
@@ -2287,7 +2288,7 @@ bool8 ScrCmd_setmonmove(struct ScriptContext *ctx)
     return FALSE;
 }
 
-bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
+bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
 {
     u32 i;
     u32 move = ScriptReadHalfword(ctx);
@@ -2315,7 +2316,7 @@ bool8 ScrCmd_checkpartymove(struct ScriptContext *ctx)
         }
     }
     return FALSE;
-}
+}  
 
 bool8 ScrCmd_addmoney(struct ScriptContext *ctx)
 {
