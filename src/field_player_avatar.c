@@ -872,6 +872,7 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         }
         return;
     }
+	
     else if (FlagGet(DN_FLAG_SEARCHING) && (heldKeys & A_BUTTON))
     {
         gPlayerAvatar.creeping = TRUE;

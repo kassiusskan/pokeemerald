@@ -5392,6 +5392,7 @@ bool8 BoxMonKnowsMove(struct BoxPokemon *boxMon, u16 move)
     return FALSE;
 }
 
+//HMs sem ensinar
 int MoveToHM(u16 move)
 {
     u16 item;
@@ -5429,7 +5430,7 @@ int MoveToHM(u16 move)
         break;
     }
     
-    return CheckBagHasItem(item, 1);
+    return item;
 }
 
 static void DisplayLearnMoveMessage(const u8 *str)

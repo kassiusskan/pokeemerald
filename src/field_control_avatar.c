@@ -568,7 +568,7 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 me
 
     return NULL;
 }
-
+//HMs sem ensinar
 static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metatileBehavior, u8 direction)
 {
      if ((FlagGet(FLAG_BADGE05_GET) == TRUE || PartyHasMonWithSurf() == TRUE || CheckBagHasItem(ITEM_HM_SURF ,1)) && IsPlayerFacingSurfableFishableWater() == TRUE)

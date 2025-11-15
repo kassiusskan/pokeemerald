@@ -2288,11 +2288,12 @@ bool8 ScrCmd_setmonmove(struct ScriptContext *ctx)
     return FALSE;
 }
 
+//HMs sem ensinar
 bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
 {
     u32 i;
     u32 move = ScriptReadHalfword(ctx);
-    u32 tmItem = MoveToHM(move);
+    u32 tmItem = ITEM_HM_CUT;
     bool32 hasInBag = (tmItem && CheckBagHasItem(tmItem, 1));
 
     Script_RequestEffects(SCREFF_V1);
