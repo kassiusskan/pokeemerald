@@ -2291,21 +2291,25 @@ bool8 ScrCmd_setmonmove(struct ScriptContext *ctx)
 //HMs sem ensinar
 bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
 {
-    u32 i;
-    u32 move = ScriptReadHalfword(ctx);
-    u32 tmItem = ITEM_HM_CUT;
-    bool32 hasInBag = (tmItem && CheckBagHasItem(tmItem, 1));
+    enum FieldMove fieldMove = ScriptReadByte(ctx);
+    bool32 hasInBag, doUnlockedCheck = ScriptReadByte(ctx);
+    u32 move;
 
     Script_RequestEffects(SCREFF_V1);
 
     gSpecialVar_Result = PARTY_SIZE;
-    
-    for (i = 0; i < PARTY_SIZE; i++)
+    if (doUnlockedCheck && !IsFieldMoveUnlocked(fieldMove))
+        return FALSE;
+
+    move = FieldMove_GetMoveId(fieldMove);
+    hasInBag = CheckBagHasItem(MoveToHM(move), 1);
+
+    for (u32 i = 0; i < PARTY_SIZE; i++)
     {
-        u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES);
+        u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES, NULL);
         if (!species)
             break;
-        
+
         if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
         {
             if ((hasInBag && CanLearnTeachableMove(species, move)) || MonKnowsMove(&gPlayerParty[i], move))
@@ -2317,7 +2321,7 @@ bool8 ScrCmd_checkfieldmove(struct ScriptContext *ctx)
         }
     }
     return FALSE;
-}  
+} 
 
 bool8 ScrCmd_addmoney(struct ScriptContext *ctx)
 {
