@@ -1047,7 +1047,7 @@ bool32 Overworld_IsBikingAllowed(void)
     else
         return TRUE;
 }
-
+//HMs sem ensinar Flash
 static bool8 CanLearnFlashInParty(void)
 {
     u8 i;

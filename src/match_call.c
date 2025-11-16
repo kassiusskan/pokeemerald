@@ -1109,7 +1109,7 @@ static bool32 SelectMatchCallTrainer(void)
         return FALSE;
 
     matchCallId = GetTrainerMatchCallId(sMatchCallState.trainerId);
-   if (!((TrainerIsEligibleForRematch(matchCallId) && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId)
+   if (!((TrainerIsEligibleForRematch(matchCallId) && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId) // so liga quando quer revanche
       || ShouldTrainerRequestBattle(matchCallId)))
         return FALSE;
 
