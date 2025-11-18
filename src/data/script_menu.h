@@ -56,8 +56,8 @@ static const struct MenuAction MultichoiceList_RegisterMenu[] =
 
 static const struct MenuAction MultichoiceList_Bike[] =
 {
-    {COMPOUND_STRING("MACH")},
-    {COMPOUND_STRING("ACRO")},
+    {COMPOUND_STRING("BLUE")},
+    {COMPOUND_STRING("RED")},
 };
 
 static const struct MenuAction MultichoiceList_StatusInfo[] =
@@ -261,7 +261,7 @@ static const struct MenuAction MultichoiceList_GameCornerDolls[] =
 {
     {COMPOUND_STRING("TREECKO DOLL 1,000 COINS")},
     {COMPOUND_STRING("TORCHIC DOLL 1,000 COINS")},
-    {COMPOUND_STRING("MUDKIP DOLL   1,000 COINS")},
+    {COMPOUND_STRING("MUDKIP DOLL  1,000 COINS")},
     {gText_Exit},
 };
 
