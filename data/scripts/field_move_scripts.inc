@@ -475,6 +475,7 @@ Text_CantRockClimb:
     .string "The cliff is steep.\n"
     .string "A Pokémon may be able to climb it.$"
     
+//autorun
 EventScript_DisableAutoRun::
     msgbox AutoRunDisabled MSGBOX_SIGN
     end
@@ -486,3 +487,16 @@ EventScript_EnableAutoRun::
     end
 AutoRunEnabled:
     .string "Auto Run {COLOR GREEN}Enabled{COLOR DARK_GRAY}.$"
+	
+//troca de bike
+EventScript_MachBike::
+    msgbox MachBikeEnable MSGBOX_SIGN
+    end
+MachBikeEnable:
+    .string "Active {COLOR BLUE}Mach Bike{COLOR DARK_GRAY} mode.$"
+    
+EventScript_AcroBike::
+    msgbox AcroBikeEnable MSGBOX_SIGN
+    end
+AcroBikeEnable:
+    .string "Active {COLOR RED}Acro Bike{COLOR DARK_GRAY} mode.$"

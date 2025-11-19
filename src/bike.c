@@ -8,6 +8,7 @@
 #include "overworld.h"
 #include "sound.h"
 #include "constants/songs.h"
+#include "script.h"
 
 // this file's functions
 static void MovePlayerOnMachBike(u8, u16, u16);
@@ -124,6 +125,8 @@ static const struct BikeHistoryInputInfo sAcroBikeTricksList[] =
 
 // code
 //bike dupla
+extern const u8 EventScript_MachBike[];
+extern const u8 EventScript_AcroBike[];
 void MovePlayerOnBike(u8 direction, u16 newKeys, u16 heldKeys)
 {
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_MACH_BIKE)
@@ -138,12 +141,14 @@ void MovePlayerOnBike(u8 direction, u16 newKeys, u16 heldKeys)
             gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_MACH_BIKE;
             gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_ACRO_BIKE;
             SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ACRO_BIKE);
+			ScriptContext_SetupScript(EventScript_AcroBike);
         }
         else
         {
             gPlayerAvatar.flags -= PLAYER_AVATAR_FLAG_ACRO_BIKE;
             gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_MACH_BIKE;
             SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
+			ScriptContext_SetupScript(EventScript_MachBike);
         }
         PlaySE(SE_BIKE_HOP);
     }
