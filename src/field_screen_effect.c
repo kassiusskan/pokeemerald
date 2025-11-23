@@ -349,7 +349,7 @@ static void Task_ExitDoor(u8 taskId)
         task->tState = 1;
         break;
     case 1:
-        if (WaitForWeatherFadeIn())
+        if (WaitForWeatherFadeIn()  && !gSysPcFromPokenav)
         {
             u8 objEventId;
             SetPlayerVisibility(TRUE);

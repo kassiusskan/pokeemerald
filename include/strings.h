@@ -2430,4 +2430,8 @@ extern const u8 gText_CannotSendMonToBoxPartner[];
 
 //levelcap
 extern const u8 gText_CurrentLevelCap[];
+
+//PC dexnav
+extern const u8 gText_Pokenav_Cannot_Access_PC[];
+extern const u8 gText_Pokenav_Access_PC[];
 #endif // GUARD_STRINGS_H

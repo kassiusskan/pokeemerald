@@ -1307,3 +1307,5 @@ const u8 gText_ContinueMenuTime[] = _("Time");
 const u8 gText_ContinueMenuPokedex[] = _("Pokédex");
 const u8 gText_ContinueMenuBadges[] = _("Badges");
 const u8 gText_CurrentLevelCap[] = _("Lv. Cap: {STR_VAR_1}");
+const u8 gText_Pokenav_Access_PC[] = _("Access your PC.");
+const u8 gText_Pokenav_Cannot_Access_PC[] = _("Can't access PC. Go outside.");

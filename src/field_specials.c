@@ -71,6 +71,7 @@
 #include "constants/metatile_labels.h"
 #include "constants/rgb.h"
 #include "palette.h"
+#include "event_data.h"
 #include "battle_util.h"
 #include "naming_screen.h"
 
@@ -1116,6 +1117,11 @@ static void PCTurnOffEffect(void)
 
     // Get where the PC should be, depending on where the player is looking.
     u8 playerDirection = GetPlayerFacingDirection();
+	
+	if(gSysPcFromPokenav){
+        gSysPcFromPokenav = FALSE;
+        return;
+    }
 
     if (IsPlayerInFrontOfPC() == FALSE)
         return;
