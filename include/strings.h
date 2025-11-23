@@ -2428,4 +2428,6 @@ extern const u8 gText_CannotSendMonToBoxHM[];
 extern const u8 gText_CannotSendMonToBoxActive[];
 extern const u8 gText_CannotSendMonToBoxPartner[];
 
+//levelcap
+extern const u8 gText_CurrentLevelCap[];
 #endif // GUARD_STRINGS_H
