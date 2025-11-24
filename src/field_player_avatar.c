@@ -2125,31 +2125,9 @@ static bool32 Fishing_ShowDots(struct Task *task)
 
 static bool32 Fishing_CheckForBite(struct Task *task)
 {
-    bool32 bite, firstMonHasSuctionOrSticky;
-
     AlignFishingAnimationFrames();
     task->tStep = FISHING_GOT_BITE;
-    bite = FALSE;
-
-    if (!DoesCurrentMapHaveFishingMons())
-    {
-        task->tStep = FISHING_NOT_EVEN_NIBBLE;
-        return TRUE;
-    }
-
-    firstMonHasSuctionOrSticky = Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold();
-
-    if(firstMonHasSuctionOrSticky)
-        bite = Fishing_RollForBite(task->tFishingRod, firstMonHasSuctionOrSticky);
-
-    if (!bite)
-        bite = Fishing_RollForBite(task->tFishingRod, FALSE);
-
-    if (!bite)
-        task->tStep = FISHING_NOT_EVEN_NIBBLE;
-
-    if (bite)
-        StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingBiteDirectionAnimNum(GetPlayerFacingDirection()));
+    StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingBiteDirectionAnimNum(GetPlayerFacingDirection()));
 
     return TRUE;
 }

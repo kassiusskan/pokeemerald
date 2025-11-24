@@ -27,8 +27,6 @@ Route109_SeashoreHouse_EventScript_DefeatedTrainers::
 	giveitem ITEM_SODA_POP, 6
 	goto_if_eq VAR_RESULT, FALSE, Route109_SeashoreHouse_EventScript_BagFull
 	setflag FLAG_RECEIVED_6_SODA_POP
-	givemon SPECIES_MELTAN, 5,0
-	setflag FLAG_SPECIES_MELTAN 
 	release
 	end
 
