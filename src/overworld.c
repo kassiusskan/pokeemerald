@@ -1068,8 +1068,8 @@ static bool8 CanLearnFlashInParty(void)
 
 void SetDefaultFlashLevel(void)
 {
-	 if (CheckBagHasItem(ITEM_HM_FLASH ,1) && CanLearnFlashInParty())
-        FlagSet(FLAG_SYS_USE_FLASH);
+	// if (CheckBagHasItem(ITEM_HM_FLASH ,1) && CanLearnFlashInParty())
+    //    FlagSet(FLAG_SYS_USE_FLASH);
     if (!gMapHeader.cave)
         gSaveBlock1Ptr->flashLevel = 0;
     else if (FlagGet(FLAG_SYS_USE_FLASH))
