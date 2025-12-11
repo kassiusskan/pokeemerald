@@ -84,6 +84,7 @@ static void EncryptBoxMon(struct BoxPokemon *boxMon);
 static void DecryptBoxMon(struct BoxPokemon *boxMon);
 static void Task_PlayMapChosenOrBattleBGM(u8 taskId);
 void TrySpecialOverworldEvo();
+static u16 GetPreEvolution(u16 species);
 
 EWRAM_DATA static u8 sLearningMoveTableID = 0;
 EWRAM_DATA u8 gPlayerPartyCount = 0;
@@ -1931,6 +1932,22 @@ void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon) //Credit: AsparagusEdua
     }
 }
 
+// Retorna o learnset de level-up da espécie (considerando a espécie base
+// para lidar com formas regionais / formas alternativas).
+const struct LevelUpMove *GetSpeciesLevelUpLearnset(u16 species)
+{
+    if (species == SPECIES_NONE || species >= NUM_SPECIES)
+        return NULL;
+
+    // Muitas coisas na expansion usam a espécie base para formas.
+    species = GET_BASE_SPECIES_ID(species);
+
+    if (species == SPECIES_NONE || species >= NUM_SPECIES)
+        return NULL;
+
+    return gSpeciesInfo[species].levelUpLearnset;
+}
+
 u16 MonTryLearningNewMoveAtLevel(struct Pokemon *mon, bool32 firstMove, u32 level)
 {
     u32 retVal = MOVE_NONE;
@@ -3606,13 +3623,139 @@ u32 GetSpeciesBaseStat(u16 species, u32 statIndex)
     return 0;
 }
 
-const struct LevelUpMove *GetSpeciesLevelUpLearnset(u16 species)
+// aqui 
+// -------------------------------------------------------------------------
+// Helpers para o Move Relearner + pré-evoluções
+// -------------------------------------------------------------------------
+
+// Adiciona os golpes de level-up de UMA espécie (sem considerar cadeia)
+static void AddSpeciesLevelUpMovesToRelearnerSingle(
+    u16 species,
+    u8 monLevel,
+    struct Pokemon *mon,
+    u16 *moves,
+    u8 *numMoves
+)
 {
-    const struct LevelUpMove *learnset = gSpeciesInfo[SanitizeSpeciesId(species)].levelUpLearnset;
-    if (learnset == NULL)
-        return gSpeciesInfo[SPECIES_NONE].levelUpLearnset;
-    return learnset;
+    const struct LevelUpMove *levelUpLearnset;
+    u16 i, j;
+    u16 move;
+    u8 level;
+
+    // Segurança básica
+    if (species == SPECIES_NONE || species >= NUM_SPECIES)
+        return;
+
+    levelUpLearnset = gSpeciesInfo[species].levelUpLearnset;
+    if (levelUpLearnset == NULL)
+        return;
+
+    // Percorre a learnset de level-up da espécie
+    for (i = 0; ; i++)
+    {
+        move = levelUpLearnset[i].move;
+        level = levelUpLearnset[i].level;
+
+        // Fim da lista / sentinela ou algo inválido
+        if (move == MOVE_NONE || move >= MOVES_COUNT)
+            break;
+
+        // Move acima do nível atual do mon -> ignora
+        if (level > monLevel)
+            continue;
+
+        // Se o Pokémon já conhece esse golpe, não entra no relearner
+        if (MonKnowsMove(mon, move))
+            continue;
+
+        // Evita duplicados na própria lista do relearner
+        for (j = 0; j < *numMoves; j++)
+        {
+            if (moves[j] == move)
+                break;
+        }
+        if (j < *numMoves)
+            continue;
+
+        // Limite de moves que o relearner pode mostrar
+        if (*numMoves >= MAX_RELEARNER_MOVES)
+            return;
+
+        moves[(*numMoves)++] = move;
+    }
 }
+
+// Acha a pré-evolução direta de uma espécie (se houver)
+static u16 GetPreEvolution(u16 species)
+{
+    u16 i, j;
+    const struct Evolution *evos;
+
+    if (species == SPECIES_NONE)
+        return SPECIES_NONE;
+
+    // Varre todas as espécies e vê quem evolui PARA "species"
+    for (i = 0; i < NUM_SPECIES; i++)
+    {
+        evos = gSpeciesInfo[i].evolutions;
+        if (evos == NULL)
+            continue;
+
+        // Cada array de Evolution é terminado com targetSpecies == SPECIES_NONE
+        for (j = 0; evos[j].targetSpecies != SPECIES_NONE; j++)
+        {
+            if (evos[j].targetSpecies == species)
+                return i;
+        }
+    }
+
+    return SPECIES_NONE;
+}
+
+// Função principal usada pelo Move Relearner
+// Mantém a assinatura padrão: retorna quantos moves foram encontrados
+u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
+{
+    u16 species;
+    u8 level;
+    u8 numMoves = 0;
+    u16 preSpecies;
+
+    // Espécie e nível atuais do mon
+    species = GetMonData(mon, MON_DATA_SPECIES, NULL);
+    level   = GetMonData(mon, MON_DATA_LEVEL, NULL);
+
+    if (species == SPECIES_NONE)
+        return 0;
+
+    // 1) Adiciona os golpes da espécie atual
+    AddSpeciesLevelUpMovesToRelearnerSingle(
+        species,
+        level,
+        mon,
+        moves,
+        &numMoves
+    );
+
+    // 2) Caminha pela cadeia de pré-evoluções para trás
+    //    e adiciona também os level-up moves das pré-evoluções
+    preSpecies = GetPreEvolution(species);
+    while (preSpecies != SPECIES_NONE)
+    {
+        AddSpeciesLevelUpMovesToRelearnerSingle(
+            preSpecies,
+            level,      // usamos o nível atual do mon
+            mon,
+            moves,
+            &numMoves
+        );
+
+        preSpecies = GetPreEvolution(preSpecies);
+    }
+
+    return numMoves;
+}
+
 
 const u16 *GetSpeciesTeachableLearnset(u16 species)
 {
@@ -5698,46 +5841,6 @@ u8 CanLearnTeachableMove(u16 species, u16 move)
     }
 }
 
-u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
-{
-    u16 learnedMoves[4];
-    u8 numMoves = 0;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
-    u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
-    int i, j, k;
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-        learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
-
-    for (i = 0; i < MAX_LEVEL_UP_MOVES; i++)
-    {
-        u16 moveLevel;
-
-        if (learnset[i].move == LEVEL_UP_MOVE_END)
-            break;
-
-        moveLevel = learnset[i].level;
-
-        if (moveLevel <= level)
-        {
-            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != learnset[i].move; j++)
-                ;
-
-            if (j == MAX_MON_MOVES)
-            {
-                for (k = 0; k < numMoves && moves[k] != learnset[i].move; k++)
-                    ;
-
-                if (k == numMoves)
-                    moves[numMoves++] = learnset[i].move;
-            }
-        }
-    }
-
-    return numMoves;
-}
-
 u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
 {
     u8 numMoves = 0;
@@ -5752,46 +5855,8 @@ u8 GetLevelUpMovesBySpecies(u16 species, u16 *moves)
 
 u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
 {
-    u16 learnedMoves[MAX_MON_MOVES];
-    u16 moves[MAX_LEVEL_UP_MOVES];
-    u8 numMoves = 0;
-    u16 species = GetMonData(mon, MON_DATA_SPECIES_OR_EGG, 0);
-    u8 level = GetMonData(mon, MON_DATA_LEVEL, 0);
-    const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
-    int i, j, k;
-
-    if (species == SPECIES_EGG)
-        return 0;
-
-    for (i = 0; i < MAX_MON_MOVES; i++)
-        learnedMoves[i] = GetMonData(mon, MON_DATA_MOVE1 + i, 0);
-
-    for (i = 0; i < MAX_LEVEL_UP_MOVES; i++)
-    {
-        u16 moveLevel;
-
-        if (learnset[i].move == LEVEL_UP_MOVE_END)
-            break;
-
-        moveLevel = learnset[i].level;
-
-        if (moveLevel <= level)
-        {
-            for (j = 0; j < MAX_MON_MOVES && learnedMoves[j] != learnset[i].move; j++)
-                ;
-
-            if (j == MAX_MON_MOVES)
-            {
-                for (k = 0; k < numMoves && moves[k] != learnset[i].move; k++)
-                    ;
-
-                if (k == numMoves)
-                    moves[numMoves++] = learnset[i].move;
-            }
-        }
-    }
-
-    return numMoves;
+    u16 moves[MAX_RELEARNER_MOVES];
+    return GetMoveRelearnerMoves(mon, moves);
 }
 
 u16 SpeciesToPokedexNum(u16 species)

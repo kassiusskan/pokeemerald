@@ -11471,7 +11471,7 @@ const struct Item gItemsInfo[] =
 
     [ITEM_TM_FIRE_BLAST] =
     {
-        .name = ITEM_NAME("TM38 Fire Blast"),
+        .name = ITEM_NAME("TM38 - Fire Blast"),
         .price = 5500,
         .description = COMPOUND_STRING(
             "A powerful fire\n"

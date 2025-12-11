@@ -15,6 +15,9 @@
 #define GET_BASE_SPECIES_ID(speciesId) (GetFormSpeciesId(speciesId, 0))
 #define FORM_SPECIES_END (0xffff)
 
+#define MAX_LEVEL_UP_MOVES       20
+#define MAX_LEVEL_DIFF_PRE_EV    5  // quantos níveis "pra trás" o relearner pode olhar nas pré-evoluções
+
 // Property labels for Get(Box)MonData / Set(Box)MonData
 enum MonData {
     MON_DATA_PERSONALITY,
