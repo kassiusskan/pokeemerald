@@ -43,6 +43,19 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
+// Descrição genérica para efeitos de Contest usados no BW Summary Screen
+static const u8 sText_GenericContestEffectDescription[] = _("No contest description.");
+
+// Tabela de ponteiros para descrições de efeitos de Contest
+// Aqui a gente só aponta tudo para o mesmo texto genérico.
+// 256 é um número "sobrando", só pra garantir que qualquer contestEffect
+// usado por gMovesInfo caia dentro desse array.
+const u8 *const gContestEffectDescriptionPointers[256] =
+{
+    [0 ... 255] = sText_GenericContestEffectDescription,
+};
+
+
 // This file's functions.
 static void LoadContestPalettes(void);
 static void Task_StartContestWaitFade(u8 taskId);

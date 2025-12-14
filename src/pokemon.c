@@ -3759,6 +3759,13 @@ u8 GetMoveRelearnerMoves(struct Pokemon *mon, u16 *moves)
     return numMoves;
 }
 
+u8 GetNumberOfRelearnableMoves(struct Pokemon *mon)
+{
+    if (mon == NULL)
+        return 0;
+
+    return GetNumberOfLevelUpMoves(mon);
+}
 
 const u16 *GetSpeciesTeachableLearnset(u16 species)
 {

@@ -371,6 +371,10 @@ static void ShowCancelOrRenamePrompt(void);
 static void CB2_ReturnToSummaryScreenFromNamingScreen(void);
 static void CB2_PssChangePokemonNickname(void);
 
+// Descrições dos efeitos de contest, definidas no módulo de contests
+extern const u8 *const gContestEffectDescriptionPointers[];
+static u8 gOriginSummaryScreenPage;
+
 // const rom data
 
 static const u8 sMemoNatureTextColor[]                      = _("{COLOR DYNAMIC_COLOR2}{SHADOW DYNAMIC_COLOR3}");
