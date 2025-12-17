@@ -208,6 +208,7 @@ LittlerootTown_EventScript_BeginDexUpgradeScene::
 	applymovement LOCALID_LITTLEROOT_BIRCH, Common_Movement_ExclamationMark
 	waitmovement 0
 	delay 80
+	
 	msgbox LittlerootTown_Text_BirchSomethingToShowYouAtLab, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_HIDE_LITTLEROOT_TOWN_RIVAL
@@ -906,7 +907,7 @@ LittlerootTown_EventScript_GiveRunningShoes::
 	return
 
 LittlerootTown_Text_OurNewHomeLetsGoInside:
-	.string "MOM: {PLAYER}, we're here, honey!\p"
+	.string "{SPEAKER NAME_MOM}{PLAYER}, we're here, honey!\p"
 	.string "It must be tiring riding with our things\n"
 	.string "in the moving truck.\p"
 	.string "Well, this is LITTLEROOT TOWN.\p"
@@ -918,10 +919,10 @@ LittlerootTown_Text_OurNewHomeLetsGoInside:
 	.string "Let's go inside.$"
 
 LittlerootTown_Text_WaitPlayer:
-	.string "MOM: Wait, {PLAYER}!$"
+	.string "{SPEAKER NAME_MOM}Wait, {PLAYER}!$"
 
 LittlerootTown_Text_WearTheseRunningShoes:
-	.string "MOM: {PLAYER}! {PLAYER}! Did you\n"
+	.string "{SPEAKER NAME_MOM}{PLAYER}! {PLAYER}! Did you\n"
 	.string "introduce yourself to PROF. BIRCH?\p"
 	.string "Oh! What an adorable POKéMON!\n"
 	.string "You got it from PROF. BIRCH. How nice!\p"
@@ -936,7 +937,7 @@ LittlerootTown_Text_SwitchShoesWithRunningShoes:
 	.string "RUNNING SHOES.$"
 
 LittlerootTown_Text_ExplainRunningShoes:
-	.string "MOM: {PLAYER}, those shoes came with\n"
+	.string "{SPEAKER NAME_MOM}{PLAYER}, those shoes came with\n"
 	.string "instructions.\p"
 	.string "“Press the B Button while wearing these\n"
 	.string "RUNNING SHOES to run extra-fast!\p"

@@ -317,7 +317,7 @@ LittlerootTown_MaysHouse_1F_Movement_MayGoUpstairs2:
 	step_end
 
 RivalsHouse_1F_Text_OhYoureTheNewNeighbor:
-	.string "Oh, hello. And you are?\p"
+	.string "{SPEAKER NAME_MOMMAY}Oh, hello. And you are?\p"
 	.string "… … … … … … … … …\n"
 	.string "… … … … … … … … …\p"
 	.string "Oh, you're {PLAYER}{KUN}, our new next-door\n"
@@ -336,7 +336,7 @@ RivalsHouse_1F_Text_LikeChildLikeFather:
 	.string "scrabbling about in grassy places.$"
 
 RivalsHouse_1F_Text_TooBusyToNoticeVisit:
-	.string "That {RIVAL}!\p"
+	.string "{SPEAKER NAME_MOMMAY}That {RIVAL}!\p"
 	.string "I guess our child is too busy with\n"
 	.string "POKéMON to notice that you came\l"
 	.string "to visit, {PLAYER}{KUN}.$"
@@ -356,7 +356,7 @@ RivalsHouse_1F_Text_ShouldGoHomeEverySoOften:
 	.string "worries about you, {PLAYER}{KUN}.$"
 
 RivalsHouse_1F_Text_MayWhoAreYou:
-	.string "Huh?\n"
+	.string "{SPEAKER NAME_MAY}Huh?\n"
 	.string "Who… Who are you?\p"
 	.string "… … … … … … … …\n"
 	.string "… … … … … … … …\p"
@@ -380,7 +380,7 @@ RivalsHouse_1F_Text_MayWhoAreYou:
 	.string "{PLAYER}{KUN}, I'll catch you later!$"
 
 RivalsHouse_1F_Text_BrendanWhoAreYou:
-	.string "Hey!\n"
+	.string "{SPEAKER NAME_BRENDAN}Hey!\n"
 	.string "You…\p"
 	.string "Who are you?\p"
 	.string "Oh, you're {PLAYER}, aren't you?\n"
