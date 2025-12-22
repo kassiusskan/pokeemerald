@@ -174,7 +174,8 @@ static const struct LevelUpMove sBlastoiseLevelUpLearnset[] = {
     LEVEL_UP_MOVE(56, MOVE_WAVE_CRASH),
     LEVEL_UP_END
 };
-#endif //P_FAMILY_SQUIRTLE
+#endif 
+//P_FAMILY_SQUIRTLE
 
 #if P_FAMILY_CATERPIE
 static const struct LevelUpMove sCaterpieLevelUpLearnset[] = {
