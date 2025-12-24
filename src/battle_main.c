@@ -253,6 +253,19 @@ COMMON_DATA u8 gHealthboxSpriteIds[MAX_BATTLERS_COUNT] = {0};
 COMMON_DATA u8 gMultiUsePlayerCursor = 0;
 COMMON_DATA u8 gNumberOfMovesToChoose = 0;
 
+static bool32 PartyHasDoublePrizeItem(void)
+{
+    u8 i;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        u16 item = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
+        if (GetItemHoldEffect(item) == HOLD_EFFECT_DOUBLE_PRIZE)
+            return TRUE;
+    }
+    return FALSE;
+}
+
 static const struct ScanlineEffectParams sIntroScanlineParams16Bit =
 {
     &REG_BG3HOFS, SCANLINE_EFFECT_DMACNT_16BIT, 1
@@ -3095,6 +3108,16 @@ static void BattleStartClearSetData(void)
     gBattleStruct->safariEscapeFactor = 3;
     gBattleStruct->wildVictorySong = 0;
     gBattleStruct->moneyMultiplier = 1;
+	gBattleStruct->moneyMultiplierItem = FALSE;
+
+	// Amulet Coin / Luck Incense: se QUALQUER mon na party estiver segurando, dobra o prêmio
+	if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+	&& !(gBattleTypeFlags & BATTLE_TYPE_LINK)
+	&& PartyHasDoublePrizeItem())
+	{
+		gBattleStruct->moneyMultiplier *= 2;
+		gBattleStruct->moneyMultiplierItem = TRUE;
+	}
 
     gBattleStruct->givenExpMons = 0;
     gBattleStruct->palaceFlags = 0;

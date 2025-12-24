@@ -35,3 +35,7 @@ gText_ObtainedTheItems::
 
 gText_PlayerFoundItems::
 	.string "{PLAYER} found {STR_VAR_1} {STR_VAR_2}!$"
+
+gText_PutItemInPC::
+    .string "{PLAYER} put away the {STR_VAR_2}\n"
+    .string "in the PC's ITEM STORAGE.$"

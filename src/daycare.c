@@ -532,28 +532,28 @@ static u16 GetEggSpecies(u16 species)
 
 static s32 GetParentToInheritNature(struct DayCare *daycare)
 {
-    u32 i;
-    u8 numWithEverstone = 0;
-    s32 slot = -1;
+    // Se um dos pais estiver segurando Everstone, o ovo herda a Nature desse pai.
+    // - 1 Everstone: herda 100%
+    // - 2 Everstones: escolhe aleatoriamente (50/50)
+    // - 0 Everstones: não força herança de Nature
+    u8 i;
+    s32 everstoneSlots[DAYCARE_MON_COUNT];
+    u8 count = 0;
 
     for (i = 0; i < DAYCARE_MON_COUNT; i++)
     {
-        if (GetItemHoldEffect(GetBoxMonData(&daycare->mons[i].mon, MON_DATA_HELD_ITEM)) == HOLD_EFFECT_PREVENT_EVOLVE
-            && (P_NATURE_INHERITANCE != GEN_3 || GetBoxMonGender(&daycare->mons[i].mon) == MON_FEMALE || IS_DITTO(GetBoxMonData(&daycare->mons[i].mon, MON_DATA_SPECIES))))
-        {
-            slot = i;
-            numWithEverstone++;
-        }
+        if (GetItemHoldEffect(GetBoxMonData(&daycare->mons[i].mon, MON_DATA_HELD_ITEM)) == HOLD_EFFECT_PREVENT_EVOLVE)
+            everstoneSlots[count++] = i;
     }
 
-    if (numWithEverstone >= DAYCARE_MON_COUNT)
-        return Random() & 1;
+    if (count == 0)
+        return -1;
+    if (count == 1)
+        return everstoneSlots[0];
 
-    if (P_NATURE_INHERITANCE > GEN_4)
-        return slot;
-
-    return Random() & 1 ? slot : -1;
+    return everstoneSlots[Random() & 1];
 }
+
 
 static void _TriggerPendingDaycareEgg(struct DayCare *daycare)
 {
