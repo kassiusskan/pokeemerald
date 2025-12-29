@@ -1224,7 +1224,7 @@
     {
       "id": "LAYOUT_ROUTE117_POKEMON_DAY_CARE",
       "name": "Route117_PokemonDayCare_Layout",
-      "width": 12,
+      "width": 15,
       "height": 9,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_PokemonDayCare",

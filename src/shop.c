@@ -157,6 +157,8 @@ static void Task_HandleShopMenuBuy(u8 taskId);
 static void Task_HandleShopMenuSell(u8 taskId);
 static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, struct ListMenu *list);
 static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y);
+static void Task_ShowShopBonusItems(u8 taskId);
+
 
 static const struct YesNoFuncTable sShopPurchaseYesNoFuncs =
 {
@@ -415,6 +417,11 @@ static void Task_ShopMenu(u8 taskId)
 #define tListTaskId data[7]
 #define tCallbackHi data[8]
 #define tCallbackLo data[9]
+// Bonus rewards after a purchase
+#define tBonusBottleCaps data[10]
+#define tBonusGoldCaps   data[11]
+#define tBonusMsgState   data[12]
+
 
 static void Task_HandleShopMenuBuy(u8 taskId)
 {
@@ -1171,6 +1178,44 @@ static void BuyMenuSubtractMoney(u8 taskId)
         gTasks[taskId].func = Task_ReturnToItemListAfterDecorationPurchase;
 }
 
+// Shows any post-purchase bonus messages (Bottle Caps / Gold Bottle Caps) in sequence, then returns to the item list.
+static void Task_ShowShopBonusItems(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    // 0: Gold Bottle Caps (if any), 1: Bottle Caps (if any)
+    if (tBonusMsgState == 0)
+    {
+        tBonusMsgState = 1;
+        if (tBonusGoldCaps > 0)
+        {
+            ConvertIntToDecimalStringN(gStringVar1, tBonusGoldCaps, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
+            BuyMenuDisplayMessage(
+                taskId,
+                (tBonusGoldCaps >= 2 ? gText_ThrowInGoldBottleCaps : gText_ThrowInGoldBottleCap),
+                Task_ShowShopBonusItems
+            );
+            return;
+        }
+    }
+
+    // Bottle Caps
+    if (tBonusBottleCaps > 0)
+    {
+        ConvertIntToDecimalStringN(gStringVar1, tBonusBottleCaps, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
+        BuyMenuDisplayMessage(
+            taskId,
+            (tBonusBottleCaps >= 2 ? gText_ThrowInBottleCaps : gText_ThrowInBottleCap),
+            BuyMenuReturnToItemList
+        );
+        tBonusBottleCaps = 0;
+        return;
+    }
+
+    BuyMenuReturnToItemList(taskId);
+}
+
+
 static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
@@ -1178,6 +1223,22 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
     if (JOY_NEW(A_BUTTON | B_BUTTON))
     {
         u16 premierBallsToAdd = tItemCount / 10;
+        u16 bottleCapsToAdd = 0;
+        u16 goldBottleCapsToAdd = 0;
+
+        // Bônus de Bottle Cap / Gold Bottle Cap por valor gasto
+        if (I_MART_BOTTLE_CAP_BONUS)
+        {
+            bottleCapsToAdd = (I_MART_BOTTLE_CAP_COST != 0)
+                ? (sShopData->totalCost / I_MART_BOTTLE_CAP_COST)
+                : 0;
+
+            goldBottleCapsToAdd = (I_MART_GOLD_BOTTLE_CAP_COST != 0)
+                ? (sShopData->totalCost / I_MART_GOLD_BOTTLE_CAP_COST)
+                : 0;
+        }
+
+        // Premier Ball (regra vanilla/expansion)
         if (premierBallsToAdd >= 1
          && ((I_PREMIER_BALL_BONUS <= GEN_7 && tItemId == ITEM_POKE_BALL)
           || (I_PREMIER_BALL_BONUS >= GEN_8 && (GetItemPocket(tItemId) == POCKET_POKE_BALLS))))
@@ -1191,12 +1252,45 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
             premierBallsToAdd = 0;
         }
 
+        // Limitar por espaço na Bag (Bottle Caps)
+        if (bottleCapsToAdd != 0)
+        {
+            u32 spaceAvailable = GetFreeSpaceForItemInBag(ITEM_BOTTLE_CAP);
+            if (spaceAvailable < bottleCapsToAdd)
+                bottleCapsToAdd = spaceAvailable;
+        }
+
+        if (goldBottleCapsToAdd != 0)
+        {
+            u32 spaceAvailable = GetFreeSpaceForItemInBag(ITEM_GOLD_BOTTLE_CAP);
+            if (spaceAvailable < goldBottleCapsToAdd)
+                goldBottleCapsToAdd = spaceAvailable;
+        }
+
         PlaySE(SE_SELECT);
+
         AddBagItem(ITEM_PREMIER_BALL, premierBallsToAdd);
+        AddBagItem(ITEM_BOTTLE_CAP, bottleCapsToAdd);
+        AddBagItem(ITEM_GOLD_BOTTLE_CAP, goldBottleCapsToAdd);
+
+        // Guardar pra exibir mensagens em sequência
+        tBonusBottleCaps = bottleCapsToAdd;
+        tBonusGoldCaps = goldBottleCapsToAdd;
+        tBonusMsgState = 0;
+
+        // Mensagens: primeiro Premier Ball, depois caps (ou direto caps se não tiver premier)
         if (premierBallsToAdd > 0)
         {
             ConvertIntToDecimalStringN(gStringVar1, premierBallsToAdd, STR_CONV_MODE_LEFT_ALIGN, MAX_ITEM_DIGITS);
-            BuyMenuDisplayMessage(taskId, (premierBallsToAdd >= 2 ? gText_ThrowInPremierBalls : gText_ThrowInPremierBall), BuyMenuReturnToItemList);
+            BuyMenuDisplayMessage(
+                taskId,
+                (premierBallsToAdd >= 2 ? gText_ThrowInPremierBalls : gText_ThrowInPremierBall),
+                (tBonusBottleCaps || tBonusGoldCaps) ? Task_ShowShopBonusItems : BuyMenuReturnToItemList
+            );
+        }
+        else if (tBonusBottleCaps || tBonusGoldCaps)
+        {
+            Task_ShowShopBonusItems(taskId);
         }
         else
         {
@@ -1204,6 +1298,7 @@ static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
         }
     }
 }
+
 
 static void Task_ReturnToItemListAfterDecorationPurchase(u8 taskId)
 {

@@ -8,6 +8,8 @@ MauvilleCity_GameCorner_MapScripts::
 	.set TM_THUNDERBOLT_COINS, 4000
 	.set TM_ICE_BEAM_COINS, 4000
 	.set DOLL_COINS, 1000
+	.set BOTTLE_CAP_COINS, 500
+	.set GOLD_BOTTLE_CAP_COINS, 1000
 
 	.set COINS_PRICE_50,  1000
 	.set COINS_PRICE_500, 10000
@@ -776,3 +778,96 @@ MauvilleCity_GameCorner_Text_CantPlayWithNoCoinCase:
 	.string "You can't play if you don't have\n"
 	.string "a COIN CASE.$"
 
+
+// ============================================================
+//  PRIZE CORNER - BOTTLE CAPS (NPC NOVO)
+// ============================================================
+
+MauvilleCity_GameCorner_EventScript_PrizeCornerBottleCaps::
+	lock
+	faceplayer
+	msgbox MauvilleCity_GameCorner_Text_ExchangeCoinsForPrizes, MSGBOX_DEFAULT
+	checkitem ITEM_COIN_CASE
+	goto_if_eq VAR_RESULT, TRUE, MauvilleCity_GameCorner_EventScript_ChooseBottleCapPrizeMessage
+	release
+	end
+
+MauvilleCity_GameCorner_EventScript_ChooseBottleCapPrizeMessage::
+	message MauvilleCity_GameCorner_Text_WhichPrize
+	waitmessage
+	showcoinsbox 1, 1
+	goto MauvilleCity_GameCorner_EventScript_ChooseBottleCapPrize
+
+MauvilleCity_GameCorner_EventScript_ReturnToChooseBottleCapPrize::
+	message MauvilleCity_GameCorner_Text_WhichPrize
+	waitmessage
+	goto MauvilleCity_GameCorner_EventScript_ChooseBottleCapPrize
+
+MauvilleCity_GameCorner_EventScript_ChooseBottleCapPrize::
+	multichoice 12, 0, MULTI_GAME_CORNER_BOTTLECAPS, FALSE
+	switch VAR_RESULT
+	case 0, MauvilleCity_GameCorner_EventScript_BottleCap
+	case 1, MauvilleCity_GameCorner_EventScript_GoldBottleCap
+	case 2, MauvilleCity_GameCorner_EventScript_CancelBottleCapSelect
+	goto MauvilleCity_GameCorner_EventScript_CancelBottleCapSelect
+	end
+
+MauvilleCity_GameCorner_EventScript_BottleCap::
+	setvar VAR_TEMP_1, 1
+	bufferitemname STR_VAR_1, ITEM_BOTTLE_CAP
+	goto MauvilleCity_GameCorner_EventScript_ConfirmBottleCapPrize
+
+MauvilleCity_GameCorner_EventScript_GoldBottleCap::
+	setvar VAR_TEMP_1, 2
+	bufferitemname STR_VAR_1, ITEM_GOLD_BOTTLE_CAP
+	goto MauvilleCity_GameCorner_EventScript_ConfirmBottleCapPrize
+
+MauvilleCity_GameCorner_EventScript_ConfirmBottleCapPrize::
+	msgbox MauvilleCity_GameCorner_Text_SoYourChoiceIsX, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, MauvilleCity_GameCorner_EventScript_ReturnToChooseBottleCapPrize
+	switch VAR_TEMP_1
+	case 1, MauvilleCity_GameCorner_EventScript_BuyBottleCap
+	case 2, MauvilleCity_GameCorner_EventScript_BuyGoldBottleCap
+	end
+
+MauvilleCity_GameCorner_EventScript_BuyBottleCap::
+	checkcoins VAR_TEMP_2
+	goto_if_lt VAR_TEMP_2, BOTTLE_CAP_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForBottleCaps
+	checkitemspace ITEM_BOTTLE_CAP, 1
+	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForBottleCaps
+	removecoins BOTTLE_CAP_COINS
+	updatecoinsbox 1, 1
+	giveitem ITEM_BOTTLE_CAP, 1
+	playse SE_SHOP
+	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
+	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseBottleCapPrize
+	end
+
+MauvilleCity_GameCorner_EventScript_BuyGoldBottleCap::
+	checkcoins VAR_TEMP_2
+	goto_if_lt VAR_TEMP_2, GOLD_BOTTLE_CAP_COINS, MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForBottleCaps
+	checkitemspace ITEM_GOLD_BOTTLE_CAP, 1
+	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NoRoomForBottleCaps
+	removecoins GOLD_BOTTLE_CAP_COINS
+	updatecoinsbox 1, 1
+	giveitem ITEM_GOLD_BOTTLE_CAP, 1
+	playse SE_SHOP
+	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
+	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseBottleCapPrize
+	end
+
+MauvilleCity_GameCorner_EventScript_NotEnoughCoinsForBottleCaps::
+	msgbox MauvilleCity_GameCorner_Text_NotEnoughCoins, MSGBOX_DEFAULT
+	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseBottleCapPrize
+	end
+
+MauvilleCity_GameCorner_EventScript_NoRoomForBottleCaps::
+	call Common_EventScript_BagIsFull
+	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseBottleCapPrize
+	end
+
+MauvilleCity_GameCorner_EventScript_CancelBottleCapSelect::
+	msgbox MauvilleCity_GameCorner_Text_OhIsThatSo, MSGBOX_DEFAULT
+	hidecoinsbox 0, 0
+	release
+	end

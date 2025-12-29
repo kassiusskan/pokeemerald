@@ -567,3 +567,22 @@ gSpecials::
 	def_special SetAbility
 	def_special ObjectEventInteractionGetApricornTreeData
 	def_special ObjectEventInteractionPickApricornTree
+	def_special GetIvTrainerState
+	def_special ChooseSendIvTrainerMon
+	def_special StoreSelectedPokemonInIvTrainer
+	def_special IvTrainer_SetTrainingStat
+	def_special BufferIvTrainerSummary
+	def_special GetNumIvPointsGainedFromIvTrainer
+	def_special GetIvTrainerCost
+	def_special TakePokemonFromIvTrainer
+	def_special IvTrainer_IsChosenStatMaxed
+	def_special GetEvTrainerState
+	def_special ChooseSendEvTrainerMon
+	def_special StoreSelectedPokemonInEvTrainer
+	def_special EvTrainer_SetTrainingStat
+	def_special BufferEvTrainerSummary
+	def_special GetEvTrainerCost
+	def_special TakePokemonFromEvTrainer
+	def_special GetEvTrainerResetCost
+	def_special EvTrainer_ResetSelectedMonEVs
+	def_special EvTrainer_GetChosenTrainState

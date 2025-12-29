@@ -23,6 +23,8 @@ MauvilleCity_Mart_Pokemart:
 	.2byte ITEM_REPEL
 	.2byte ITEM_SUPER_REPEL
 	.2byte ITEM_HARBOR_MAIL
+	//.2byte ITEM_BOTTLE_CAP
+	//.2byte ITEM_GOLD_BOTTLE_CAP
 	pokemartlistend
 
 MauvilleCity_Mart_EventScript_ExpertM::

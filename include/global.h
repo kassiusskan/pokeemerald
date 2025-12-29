@@ -869,6 +869,22 @@ struct DayCare
     u32 stepCounter;
 };
 
+struct IvTrainerFacility
+{
+    struct BoxPokemon mon;
+    u16 ivStepCounter;  // contador até render +1 IV
+    u8 ivPoints;        // quantos IVs “ganhos” (aplica na retirada)
+    u8 stat;            // 0..5 ou 0xFF
+};
+
+struct EvTrainerFacility
+{
+    struct BoxPokemon mon;
+    u16 evStepCounter;
+    u8 evPoints;  // EVs acumulados (aplica na retirada)
+    u8 stat;      // 0..5 ou 0xFF
+};
+
 struct LilycoveLadyQuiz
 {
     /*0x000*/ u8 id;
@@ -1172,7 +1188,10 @@ struct SaveBlock1
 #if FREE_TRAINER_HILL == FALSE
     /*0x3???*/ struct TrainerHillSave trainerHill;
 #endif //FREE_TRAINER_HILL
-    /*0x3???*/ struct WaldaPhrase waldaPhrase;
+    /*0x3???*/ struct WaldaPhrase waldaPhrase;	
+	struct IvTrainerFacility ivTrainer;
+	struct EvTrainerFacility evTrainer;
+
     // sizeof: 0x3???
 };
 

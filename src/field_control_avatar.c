@@ -3,6 +3,8 @@
 #include "bike.h"
 #include "coord_event_weather.h"
 #include "daycare.h"
+#include "iv_trainer.h"
+#include "ev_trainer.h"
 #include "debug.h"
 #include "dexnav.h"
 #include "faraway_island.h"
@@ -684,6 +686,8 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
 
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED_MOVE) && !MetatileBehavior_IsForcedMovementTile(metatileBehavior))
     {
+		IvTrainer_OnStep();  // <-- ADICIONE ISSO AQUI
+		EvTrainer_OnStep();
     #if OW_POISON_DAMAGE < GEN_5
         if (UpdatePoisonStepCounter() == TRUE)
         {

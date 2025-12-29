@@ -265,6 +265,17 @@ static const struct MenuAction MultichoiceList_GameCornerDolls[] =
     {gText_Exit},
 };
 
+static const u8 sText_BottleCap[] = _("Bottle Cap");
+static const u8 sText_GoldBottleCap[] = _("Gold Bottle Cap");
+static const u8 sText_CancelCaps[] = _("Cancel");
+
+static const struct MenuAction MultichoiceList_GameCornerBottleCaps[] =
+{
+    {sText_BottleCap},
+    {sText_GoldBottleCap},
+    {sText_CancelCaps},
+};
+
 static const struct MenuAction MultichoiceList_GameCornerTMs[] =
 {
     {COMPOUND_STRING("TM32{CLEAR_TO 0x48}1,500 COINS")},
@@ -789,6 +800,18 @@ struct MultichoiceListStruct
     u8 count;
 };
 
+static const struct MenuAction MultichoiceList_IvTrainerStats[] =
+{
+    {gText_HP3},
+    {gText_Attack3},
+    {gText_Defense3},
+    {gText_SpAtk3},
+    {gText_SpDef3},
+    {gText_Speed2},
+    {gText_Exit},
+};
+
+
 static const struct MultichoiceListStruct sMultichoiceLists[] =
 {
     [MULTI_BRINEY_ON_DEWFORD]          = MULTICHOICE(MultichoiceList_BrineyOnDewford),
@@ -906,6 +929,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_FALLARBOR_TENT_RULES]       = MULTICHOICE(MultichoiceList_FallarborTentRules),
     [MULTI_TAG_MATCH_TYPE]             = MULTICHOICE(MultichoiceList_TagMatchType),
     [MULTI_BERRY_PLOT]                 = MULTICHOICE(MultichoiceList_BerryPlot),
+	[MULTI_IV_TRAINER_STATS] 		   = MULTICHOICE(MultichoiceList_IvTrainerStats),
+	[MULTI_GAME_CORNER_BOTTLECAPS ]    = MULTICHOICE(MultichoiceList_GameCornerBottleCaps),
 };
 
 const u8 *const gStdStrings[] =
