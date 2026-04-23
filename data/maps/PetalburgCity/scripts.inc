@@ -748,22 +748,22 @@ PetalburgCity_Text_WallyHouseSign:
 
 PetalburgCity_Text_AreYouATrainer:
 	.string "Excuse me!\p"
-	.string "{SPEAKER NAME_SCOTT}Let me guess, from the way you're\n"
+	.string "Let me guess, from the way you're\n"
 	.string "dressed, are you a POKéMON TRAINER?$"
 
 PetalburgCity_Text_WellMaybeNot:
-	.string "{SPEAKER NAME_SCOTT}… … … … … …\p"
+	.string "… … … … … …\p"
 	.string "Well, maybe not.\n"
 	.string "Your clothes aren't all that dirty.\p"
 	.string "You're either a rookie TRAINER,\n"
 	.string "or maybe you're just an ordinary kid.$"
 
 PetalburgCity_Text_ImLookingForTalentedTrainers:
-	.string "{SPEAKER NAME_SCOTT}I'm roaming the land in search of\n"
+	.string "I'm roaming the land in search of\n"
 	.string "talented TRAINERS.\p"
 	.string "I'm sorry to have taken your time.$"
 
 PetalburgCity_Text_EXPShareTrainers:
-	.string "{SPEAKER NAME_SCOTT}You're going to need this.\n"
+	.string "You're going to need this.\n"
 	.string "This item will greatly help you with the\p"
 	.string "difficulties ahead.$"

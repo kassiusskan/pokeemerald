@@ -419,14 +419,14 @@ RusturfTunnel_EventScript_Mike::
 	end
 
 RusturfTunnel_Text_ComeAndGetSome:
-	.string "{SPEAKER NAME_AQUA_GRUNT}What, are you coming?\n"
+	.string "What, are you coming?\n"
 	.string "Come and get some, then!$"
 
 RusturfTunnel_Text_Peeko:
 	.string "PEEKO: Pii pihyoh!$"
 
 RusturfTunnel_Text_GruntIntro:
-	.string "{SPEAKER NAME_AQUA_GRUNT}Grah, keelhaul it all!\p"
+	.string "Grah, keelhaul it all!\p"
 	.string "That hostage POKéMON turned out to\n"
 	.string "be worthless!\p"
 	.string "And to think I made a getaway…\n"
