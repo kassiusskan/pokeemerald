@@ -2651,7 +2651,7 @@ void UpdateLightSprite(struct Sprite *sprite)
         sprite->invisible = FALSE;
     }
     // Note: Don't set window registers during hardware fade!
-    Weather_SetBlendCoeffs(7, BASE_SHADOW_INTENSITY);
+    Weather_SetBlendCoeffs(12, BASE_SHADOW_INTENSITY);
 }
 
 // Spawn a light at a map coordinate

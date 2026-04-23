@@ -261,17 +261,17 @@ Route101_Text_HelpMe:
 	.string "H-help me!$"
 
 Route101_Text_PleaseHelp:
-	.string "Hello! You over there!\n"
+	.string "{SPEAKER NAME_BIRCH} Hello! You over there!\n"
 	.string "Please! Help!\p"
 	.string "In my BAG!\n"
 	.string "There's a POKé BALL!$"
 
 Route101_Text_DontLeaveMe:
-	.string "Wh-Where are you going?!\n"
+	.string "{SPEAKER NAME_BIRCH}Wh-Where are you going?!\n"
 	.string "Don't leave me like this!$"
 
 Route101_Text_YouSavedMe:
-	.string "PROF. BIRCH: Whew…\p"
+	.string "{SPEAKER NAME_BIRCH} Whew…\p"
 	.string "I was in the tall grass studying wild\n"
 	.string "POKéMON when I was jumped.\p"
 	.string "You saved me.\n"
@@ -294,19 +294,6 @@ Route101_Text_WildPokemonInTallGrass:
 	.string "to go into the tall grass and search.$"
 
 Route101_Text_RouteSign:
-	.string "Welcome to Route 101, you can \n"
-	.string "find the following Pokémon here\p"
-	.string "Ratata - 20%\n"
-	.string "Poochyena - 20%\p"
-	.string "Pidgey - 10%\n"
-	.string "Meowth - 10%\p"
-	.string "Growlithe - 10%\n"
-	.string "Skitty- 10%\p"
-	.string "Sentret - 5%\n"
-	.string "Lillipup - 5%\p"
-	.string "Eevee - 4%\n"
-	.string "Glameow - 4%\p"
-	.string "Riolu - 1%\n"
-	.string "Snubbull - 1%\p"
+	.string "Welcome to Route 101,\n"
 	.string "{UP_ARROW} OLDALE TOWN$"
 

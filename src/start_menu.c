@@ -462,13 +462,13 @@ static void ShowSafariBallsWindow(void)
 // If you want to shorten the dates to Sat., Sun., etc., change this to 70
 #define CLOCK_WINDOW_WIDTH 60
 
-const u8 gText_Saturday[] = _("Sat,");
-const u8 gText_Sunday[] = _("Sun,");
-const u8 gText_Monday[] = _("Mon,");
-const u8 gText_Tuesday[] = _("Tue,");
-const u8 gText_Wednesday[] = _("Wed,");
-const u8 gText_Thursday[] = _("Thu,");
-const u8 gText_Friday[] = _("Fri,");
+const u8 gText_Saturday[] = _("Sat, ");
+const u8 gText_Sunday[] = _("Sun, ");
+const u8 gText_Monday[] = _("Mon, ");
+const u8 gText_Tuesday[] = _("Tue, ");
+const u8 gText_Wednesday[] = _("Wed, ");
+const u8 gText_Thursday[] = _("Thu, ");
+const u8 gText_Friday[] = _("Fri, ");
 
 const u8 *const gDayNameStringsTable[7] = {
     gText_Saturday,

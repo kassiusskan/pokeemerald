@@ -318,41 +318,41 @@ PetalburgWoods_EventScript_JamesRematch::
 	end
 
 PetalburgWoods_Text_NotAOneToBeFound:
-	.string "Hmmm…\n"
+	.string "{SPEAKER NAME_EXECUTIVE}Hmmm…\n"
 	.string "Not a one to be found…$"
 
 PetalburgWoods_Text_HaveYouSeenShroomish:
-	.string "Hello, have you seen any POKéMON\n"
+	.string "{SPEAKER NAME_EXECUTIVE}Hello, have you seen any POKéMON\n"
 	.string "called SHROOMISH around here?\p"
 	.string "I really love that POKéMON.$"
 
 PetalburgWoods_Text_IWasGoingToAmbushYou:
-	.string "I was going to ambush you, but you\n"
+	.string "{SPEAKER NAME_AQUA_GRUNT}I was going to ambush you, but you\n"
 	.string "had to dawdle in PETALBURG WOODS\l"
 	.string "forever, didn't you?\p"
 	.string "I got sick of waiting, so here I am!$"
 
 PetalburgWoods_Text_HandOverThosePapers:
-	.string "You! DEVON RESEARCHER!\p"
+	.string "{SPEAKER NAME_AQUA_GRUNT}You! DEVON RESEARCHER!\p"
 	.string "Hand over those papers!$"
 
 PetalburgWoods_Text_YouHaveToHelpMe:
-	.string "Aiyeeeh!\p"
+	.string "{SPEAKER NAME_EXECUTIVE}Aiyeeeh!\p"
 	.string "You're a POKéMON TRAINER, aren't you?\n"
 	.string "You've got to help me, please!$"
 
 PetalburgWoods_Text_NoOneCrossesTeamAqua:
-	.string "Hunh? What do you think you're doing?\n"
+	.string "{SPEAKER NAME_AQUA_GRUNT}Hunh? What do you think you're doing?\n"
 	.string "What, you're going to protect him?\p"
 	.string "No one who crosses TEAM AQUA\n"
-	.string "gets any mercy, not even a kid!\p"
+	.string "gets any mercy, not even you!\p"
 	.string "Come on and battle me!$"
 
 PetalburgWoods_Text_YoureKiddingMe:
 	.string "You're kidding me! You're tough!$"
 
 PetalburgWoods_Text_YouveGotSomeNerve:
-	.string "Grrr… You've got some nerve\n"
+	.string "{SPEAKER NAME_AQUA_GRUNT}Grrr… You've got some nerve\n"
 	.string "meddling with TEAM AQUA!\l"
 	.string "Come on and battle me again!\p"
 	.string "I wish I could say that, but I'm out of\n"
@@ -362,7 +362,7 @@ PetalburgWoods_Text_YouveGotSomeNerve:
 	.string "I'll let you go today!$"
 
 PetalburgWoods_Text_ThatWasAwfullyClose:
-	.string "Whew…\n"
+	.string "{SPEAKER NAME_EXECUTIVE}Whew…\n"
 	.string "That was awfully close!\p"
 	.string "Thanks to you, he didn't rob me of\n"
 	.string "these important papers.\p"
@@ -370,12 +370,12 @@ PetalburgWoods_Text_ThatWasAwfullyClose:
 	.string "my thanks!$"
 
 PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro:
-	.string "Didn't that TEAM AQUA thug say\n"
+	.string "{SPEAKER NAME_EXECUTIVE}Didn't that TEAM AQUA thug say\n"
 	.string "they were after something in\l"
 	.string "RUSTBORO, too?$"
 
 PetalburgWoods_Text_ICantBeWastingTime:
-	.string "Uh-oh! It's a crisis!\n"
+	.string "{SPEAKER NAME_EXECUTIVE}Uh-oh! It's a crisis!\n"
 	.string "I can't be wasting time!$"
 
 PetalburgWoods_Text_YoureLoadedWithItems:

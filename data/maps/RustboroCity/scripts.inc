@@ -1095,11 +1095,11 @@ RustboroCity_Text_OutOfTheWay:
 	.string "Out of the way!$"
 
 RustboroCity_Text_WaitDontTakeMyGoods:
-	.string "Wait! Pleeeaaase!\p"
+	.string "{SPEAKER NAME_EXECUTIVE}Wait! Pleeeaaase!\p"
 	.string "Don't take my GOODS!$"
 
 RustboroCity_Text_HelpMeIWasRobbed:
-	.string "Oh, it's you!\p"
+	.string "{SPEAKER NAME_EXECUTIVE}Oh, it's you!\p"
 	.string "You're that fantastic TRAINER who\n"
 	.string "helped me in PETALBURG WOODS!\p"
 	.string "Help me! I was robbed by TEAM AQUA!\n"
@@ -1108,7 +1108,7 @@ RustboroCity_Text_HelpMeIWasRobbed:
 	.string "I'm going to be in serious trouble.$"
 
 RustboroCity_Text_ShadyCharacterTookOffTowardsTunnel:
-	.string "That shady character, I think he took\n"
+	.string "{SPEAKER NAME_EXECUTIVE}That shady character, I think he took\n"
 	.string "off towards the tunnel over there.$"
 
 RustboroCity_Text_YouGotItThankYou:
