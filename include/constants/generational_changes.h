@@ -2,7 +2,7 @@
 #define GUARD_CONSTANTS_GENERATIONAL_CHANGES_H
 
 /* Config definitions */
-#define CONFIG_DEFINITIONS(F) \
+#define BATTLE_CONFIG_DEFINITIONS(F) \
     /* Calculation settings */ \
     F(B_CRIT_CHANCE,               critChance,              (u32, GEN_COUNT - 1)) \
     F(B_CRIT_MULTIPLIER,           critMultiplier,          (u32, GEN_COUNT - 1)) \
@@ -37,15 +37,17 @@
     F(B_PARENTAL_BOND_DMG,         parentalBondDmg,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
     F(B_MULTIPLE_TARGETS_DMG,      multipleTargetsDmg,      (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
     /* Type settings */ \
-    F(B_GHOSTS_ESCAPE,             ghostsEscape,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_PARALYZE_ELECTRIC,         paralyzeElectric,        (u32, GEN_COUNT - 1)) \
-    F(B_POWDER_GRASS,              powderGrass,             (u32, GEN_COUNT - 1)) \
-    F(B_POWDER_OVERCOAT,           powderOvercoat,          (u32, GEN_COUNT - 1)) \
-    F(B_UPDATED_TYPE_MATCHUPS,     updatedTypeMatchups,     (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_PRANKSTER_DARK_TYPES,      pranksterDarkTypes,      (u32, GEN_COUNT - 1)) \
-    F(B_SHEER_COLD_IMMUNITY,       sheerColdImmunity,       (u32, GEN_COUNT - 1)) \
-    F(B_ROOST_PURE_FLYING,         roostPureFlying,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_STATUS_TYPE_IMMUNITY,      statusTypeImmunity,      (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+
+    F(GHOSTS_ESCAPE,             ghostsEscape,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(PARALYZE_ELECTRIC,         paralyzeElectric,        (u32, GEN_COUNT - 1)) \
+    F(POWDER_GRASS,              powderGrass,             (u32, GEN_COUNT - 1)) \
+    F(POWDER_OVERCOAT,           powderOvercoat,          (u32, GEN_COUNT - 1)) \
+    F(UPDATED_TYPE_MATCHUPS,     updatedTypeMatchups,     (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(PRANKSTER_DARK_TYPES,      pranksterDarkTypes,      (u32, GEN_COUNT - 1)) \
+    F(SHEER_COLD_IMMUNITY,       sheerColdImmunity,       (u32, GEN_COUNT - 1)) \
+    F(ROOST_PURE_FLYING,         roostPureFlying,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(STATUS_TYPE_IMMUNITY,      statusTypeImmunity,      (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(HIDDEN_POWER_COUNTER,      hiddenPowerCounter,      (u32, GEN_COUNT - 1)) \
     /* Turn settings */ \
     F(B_BINDING_TURNS,             bindingTurns,            (u32, GEN_COUNT - 1)) \
     F(B_UPROAR_TURNS,              uproarTurns,             (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
@@ -59,16 +61,18 @@
     F(B_RECALC_TURN_AFTER_ACTIONS, recalcTurnAfterActions,  (u32, GEN_COUNT - 1)) \
     F(B_FAINT_SWITCH_IN,           faintSwitchIn,           (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
     /* Move data settings */ \
-    F(B_UPDATED_MOVE_DATA,         updatedMoveData,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_UPDATED_MOVE_TYPES,        updatedMoveTypes,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_UPDATED_MOVE_FLAGS,        updatedMoveFlags,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_PHYSICAL_SPECIAL_SPLIT,    physicalSpecialSplit,    (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_RECOIL_IF_MISS_DMG,        recoilIfMissDmg,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_KLUTZ_FLING_INTERACTION,   klutzFlingInteraction,   (u32, GEN_COUNT - 1)) \
-    F(B_UPDATED_CONVERSION,        updatedConversion,       (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_UPDATED_CONVERSION_2,      updatedConversion2,      (u32, GEN_COUNT - 1)) \
-    F(B_PP_REDUCED_BY_SPITE,       ppReducedBySpite,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_EXTRAPOLATED_MOVE_FLAGS,   extrapolatedMoveFlags,   (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+
+    F(UPDATED_MOVE_DATA,         updatedMoveData,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(UPDATED_MOVE_TYPES,        updatedMoveTypes,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(UPDATED_MOVE_FLAGS,        updatedMoveFlags,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(PHYSICAL_SPECIAL_SPLIT,    physicalSpecialSplit,    (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(RECOIL_IF_MISS_DMG,        recoilIfMissDmg,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(KLUTZ_FLING_INTERACTION,   klutzFlingInteraction,   (u32, GEN_COUNT - 1)) \
+    F(UPDATED_CONVERSION,        updatedConversion,       (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(UPDATED_CONVERSION_2,      updatedConversion2,      (u32, GEN_COUNT - 1)) \
+    F(PP_REDUCED_BY_SPITE,       ppReducedBySpite,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(EXTRAPOLATED_MOVE_FLAGS,   extrapolatedMoveFlags,   (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(MODERN_TRICK_CHOICE_LOCK,  modernTrickChoiceLock,   (u32, GEN_COUNT - 1)) \
     /* Ability data settings */ \
     F(B_UPDATED_ABILITY_DATA,      updatedAbilityData,      (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
     /* Move accuracy settings */ \
@@ -86,84 +90,79 @@
     F(B_FOCUS_ENERGY_CRIT_RATIO,   focusEnergyCritRatio,    (u32, GEN_COUNT - 1)) \
     F(B_PSYCH_UP_CRIT_RATIO,       psychUpCritRatio,        (u32, GEN_COUNT - 1)) \
     /* Other move settings */ \
-    F(B_INCINERATE_GEMS,           incinerateGems,          (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_CAN_SPITE_FAIL,            canSpiteFail,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_CRASH_IF_TARGET_IMMUNE,    crashIfTargetImmune,     (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_MEMENTO_FAIL,              mementoFail,             (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_PARTING_SHOT_SWITCH,       partingShotSwitch,       (u32, GEN_COUNT - 1)) \
-    F(B_BATON_PASS_TRAPPING,       batonPassTrapping,       (u32, GEN_COUNT - 1)) \
-    F(B_GLARE_GHOST,               glareGhost,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_SKILL_SWAP,                skillSwap,               (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_BRICK_BREAK,               brickBreak,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_WISH_HP_SOURCE,            wishHpSource,            (u32, GEN_COUNT - 1)) \
-    F(B_RAMPAGE_CANCELLING,        rampageCancelling,       (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_HEAL_BLOCKING,             healBlocking,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_ROOTED_GROUNDING,          rootedGrounding,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_METRONOME_MOVES,           metronomeMoves,          (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_TELEPORT_BEHAVIOR,         teleportBehavior,        (u32, GEN_COUNT - 1)) \
-    F(B_BEAT_UP,                   beatUp,                  (u32, GEN_COUNT - 1)) \
-    F(B_DARK_VOID_FAIL,            darkVoidFail,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_BURN_HIT_THAW,             burnHitThaw,             (u32, GEN_COUNT - 1)) \
-    F(B_HEALING_WISH_SWITCH,       healingWishSwitch,       (u32, GEN_COUNT - 1)) \
-    F(B_DEFOG_EFFECT_CLEARING,     defogEffectClearing,     (u32, GEN_COUNT - 1)) \
-    F(B_STOCKPILE_RAISES_DEFS,     stockpileRaisesDefs,     (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_TRANSFORM_SEMI_INV_FAIL,   transformSemiInvFail,    (u32, GEN_COUNT - 1)) \
-    F(B_TRANSFORM_TARGET_FAIL,     transformTargetFail,     (u32, GEN_COUNT - 1)) \
-    F(B_TRANSFORM_USER_FAIL,       transformUserFail,       (u32, GEN_COUNT - 1)) \
-    F(B_TRANSFORM_SUBSTITUTE_FAIL, transformSubstituteFail, (u32, GEN_COUNT - 1)) \
-    F(B_TRANSFORM_SHINY,           transformShiny,          (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_TRANSFORM_FORM_CHANGES,    transformFormChanges,    (u32, GEN_COUNT - 1)) \
-    F(B_WIDE_GUARD,                wideGuard,               (u32, GEN_COUNT - 1)) \
-    F(B_QUICK_GUARD,               quickGuard,              (u32, GEN_COUNT - 1)) \
-    F(B_IMPRISON,                  imprison,                (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_TAUNT_ME_FIRST,            tauntMeFirst,            (u32, GEN_COUNT - 1)) \
-    F(B_ALLY_SWITCH_FAIL_CHANCE,   allySwitchFailChance,    (u32, GEN_COUNT - 1)) \
-    F(B_SKETCH_BANS,               sketchBans,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_KNOCK_OFF_REMOVAL,         knockOffRemoval,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_HEAL_BELL_SOUNDPROOF,      healBellSoundproof,      (u32, GEN_COUNT - 1)) \
-    F(B_CHARGE,                    charge,                  (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_POWDER_RAIN,               powderRain,              (u32, GEN_COUNT - 1)) \
-    F(B_AFTER_YOU_TURN_ORDER,      afterYouTurnOrder,       (u32, GEN_COUNT - 1)) \
-    F(B_QUASH_TURN_ORDER,          quashTurnOrder,          (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_DESTINY_BOND_FAIL,         destinyBondFail,         (u32, GEN_COUNT - 1)) \
-    F(B_FORESIGHT_FAIL,            foresightFail,           (u32, GEN_COUNT - 1)) \
-    F(B_MIRACLE_EYE_FAIL,          miracleEyeFail,          (u32, GEN_COUNT - 1)) \
-    F(B_PURSUIT_TARGET,            pursuitTarget,           (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_SKIP_RECHARGE,             skipRecharge,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_ENCORE_TARGET,             encoreTarget,            (u32, GEN_COUNT - 1)) \
-    F(B_TIME_OF_DAY_HEALING_MOVES, timeOfDayHealingMoves,   (u32, GEN_COUNT - 1)) \
-    F(B_DREAM_EATER_LIQUID_OOZE,   dreamEaterLiquidOoze,    (u32, GEN_COUNT - 1)) \
+    F(INCINERATE_GEMS,           incinerateGems,          (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(CAN_SPITE_FAIL,            canSpiteFail,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(CRASH_IF_TARGET_IMMUNE,    crashIfTargetImmune,     (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(MEMENTO_FAIL,              mementoFail,             (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(PARTING_SHOT_SWITCH,       partingShotSwitch,       (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(GLARE_GHOST,               glareGhost,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(SKILL_SWAP,                skillSwap,               (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(BRICK_BREAK,               brickBreak,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(WISH_HP_SOURCE,            wishHpSource,            (u32, GEN_COUNT - 1)) \
+    F(RAMPAGE_CANCELLING,        rampageCancelling,       (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(HEAL_BLOCKING,             healBlocking,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(ROOTED_GROUNDING,          rootedGrounding,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(METRONOME_MOVES,           metronomeMoves,          (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(TELEPORT_BEHAVIOR,         teleportBehavior,        (u32, GEN_COUNT - 1)) \
+    F(BEAT_UP,                   beatUp,                  (u32, GEN_COUNT - 1)) \
+    F(DARK_VOID_FAIL,            darkVoidFail,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(BURN_HIT_THAW,             burnHitThaw,             (u32, GEN_COUNT - 1)) \
+    F(HEALING_WISH_SWITCH,       healingWishSwitch,       (u32, GEN_COUNT - 1)) \
+    F(DEFOG_EFFECT_CLEARING,     defogEffectClearing,     (u32, GEN_COUNT - 1)) \
+    F(STOCKPILE_RAISES_DEFS,     stockpileRaisesDefs,     (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(TRANSFORM_SHINY,           transformShiny,          (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(TRANSFORM_FORM_CHANGES,    transformFormChanges,    (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(WIDE_GUARD,                wideGuard,               (u32, GEN_COUNT - 1)) \
+    F(QUICK_GUARD,               quickGuard,              (u32, GEN_COUNT - 1)) \
+    F(IMPRISON,                  imprison,                (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(ALLY_SWITCH_FAIL_CHANCE,   allySwitchFailChance,    (u32, GEN_COUNT - 1)) \
+    F(SKETCH_BANS,               sketchBans,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(KNOCK_OFF_REMOVAL,         knockOffRemoval,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(HEAL_BELL_SOUNDPROOF,      healBellSoundproof,      (u32, GEN_COUNT - 1)) \
+    F(CHARGE,                    charge,                  (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(POWDER_STATUS_HEAVY_RAIN,  powderStatusHeavyRain,   (u32, GEN_COUNT - 1)) \
+    F(AFTER_YOU_TURN_ORDER,      afterYouTurnOrder,       (u32, GEN_COUNT - 1)) \
+    F(QUASH_TURN_ORDER,          quashTurnOrder,          (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(DESTINY_BOND_FAIL,         destinyBondFail,         (u32, GEN_COUNT - 1)) \
+    F(FORESIGHT_FAIL,            foresightFail,           (u32, GEN_COUNT - 1)) \
+    F(MIRACLE_EYE_FAIL,          miracleEyeFail,          (u32, GEN_COUNT - 1)) \
+    F(PURSUIT_TARGET,            pursuitTarget,           (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(SKIP_RECHARGE,             skipRecharge,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(ENCORE_TARGET,             encoreTarget,            (u32, GEN_COUNT - 1)) \
+    F(TIME_OF_DAY_HEALING_MOVES, timeOfDayHealingMoves,   (u32, GEN_COUNT - 1)) \
+    F(DREAM_EATER_LIQUID_OOZE,   dreamEaterLiquidOoze,    (u32, GEN_COUNT - 1)) \
+    F(FOCUS_PUNCH_FAILURE,       focusPunchFailure,       (u32, GEN_COUNT - 1)) \
+    F(RAGE_BUILDS,               rageBuilds,              (u32, GEN_COUNT - 1)) \
+    F(CHECK_USER_FAILURE,        checkUserFailure,        (u32, GEN_COUNT - 1)) \
     /* Ability settings */ \
-    F(B_GALE_WINGS,                galeWings,               (u32, GEN_COUNT - 1)) \
-    F(B_STANCE_CHANGE_FAIL,        stanceChangeFail,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_SHADOW_TAG_ESCAPE,         shadowTagEscape,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_MOODY_ACC_EVASION,         moodyAccEvasion,         (u32, GEN_COUNT - 1)) \
-    F(B_FLASH_FIRE_FROZEN,         flashFireFrozen,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_SYNCHRONIZE_TOXIC,         synchronizeToxic,        (u32, GEN_COUNT - 1)) \
-    F(B_UPDATED_INTIMIDATE,        updatedIntimidate,       (u32, GEN_COUNT - 1)) \
-    F(B_OBLIVIOUS_TAUNT,           obliviousTaunt,          (u32, GEN_COUNT - 1)) \
-    F(B_STURDY,                    sturdy,                  (u32, GEN_COUNT - 1)) \
-    F(B_PLUS_MINUS_INTERACTION,    plusMinusInteraction,    (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_WEATHER_FORMS,             weatherForms,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_SYMBIOSIS_GEMS,            symbiosisGems,           (u32, GEN_COUNT - 1)) \
-    F(B_ABSORBING_ABILITY_STRING,  absorbingAbilityString,  (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_REDIRECT_ABILITY_IMMUNITY, redirectAbilityImmunity, (u32, GEN_COUNT - 1)) \
-    F(B_REDIRECT_ABILITY_ALLIES,   redirectAbilityAllies,   (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_LEAF_GUARD_PREVENTS_REST,  leafGuardPreventsRest,   (u32, GEN_COUNT - 1)) \
-    F(B_TRANSISTOR_BOOST,          transistorBoost,         (u32, GEN_COUNT - 1)) \
-    F(B_ILLUMINATE_EFFECT,         illuminateEffect,        (u32, GEN_COUNT - 1)) \
-    F(B_WEAK_ARMOR_SPEED,          weakArmorSpeed,          (u32, GEN_COUNT - 1)) \
-    F(B_PROTEAN_LIBERO,            proteanLibero,           (u32, GEN_COUNT - 1)) \
-    F(B_INTREPID_SWORD,            intrepidSword,           (u32, GEN_COUNT - 1)) \
-    F(B_DAUNTLESS_SHIELD,          dauntlessShield,         (u32, GEN_COUNT - 1)) \
-    F(B_DISGUISE_HP_LOSS,          disguiseHpLoss,          (u32, GEN_COUNT - 1)) \
-    F(B_ABILITY_TRIGGER_CHANCE,    abilityTriggerChance,    (u32, GEN_COUNT - 1)) \
-    F(B_PICKUP_WILD,               pickupWild,              (u32, GEN_COUNT - 1)) \
-    F(B_MAGIC_GUARD,               magicGuard,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_BATTLE_BOND,               battleBond,              (u32, GEN_COUNT - 1)) \
-    F(B_ATE_MULTIPLIER,            ateMultiplier,           (u32, GEN_COUNT - 1)) \
-    F(B_DEFIANT_STICKY_WEB,        defiantStickyWeb,        (u32, GEN_COUNT - 1)) \
-    F(B_INFILTRATOR_SUBSTITUTE,    infiltratorSubstitute,   (u32, GEN_COUNT - 1)) \
+    F(GALE_WINGS,                galeWings,               (u32, GEN_COUNT - 1)) \
+    F(STANCE_CHANGE_FAIL,        stanceChangeFail,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(SHADOW_TAG_ESCAPE,         shadowTagEscape,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(MOODY_ACC_EVASION,         moodyAccEvasion,         (u32, GEN_COUNT - 1)) \
+    F(FLASH_FIRE_FROZEN,         flashFireFrozen,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(SYNCHRONIZE_TOXIC,         synchronizeToxic,        (u32, GEN_COUNT - 1)) \
+    F(UPDATED_INTIMIDATE,        updatedIntimidate,       (u32, GEN_COUNT - 1)) \
+    F(OBLIVIOUS_TAUNT,           obliviousTaunt,          (u32, GEN_COUNT - 1)) \
+    F(STURDY,                    sturdy,                  (u32, GEN_COUNT - 1)) \
+    F(PLUS_MINUS_INTERACTION,    plusMinusInteraction,    (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(WEATHER_FORMS,             weatherForms,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(SYMBIOSIS_GEMS,            symbiosisGems,           (u32, GEN_COUNT - 1)) \
+    F(REDIRECT_ABILITY_IMMUNITY, redirectAbilityImmunity, (u32, GEN_COUNT - 1)) \
+    F(REDIRECT_ABILITY_ALLIES,   redirectAbilityAllies,   (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(LEAF_GUARD_PREVENTS_REST,  leafGuardPreventsRest,   (u32, GEN_COUNT - 1)) \
+    F(TRANSISTOR_BOOST,          transistorBoost,         (u32, GEN_COUNT - 1)) \
+    F(ILLUMINATE_EFFECT,         illuminateEffect,        (u32, GEN_COUNT - 1)) \
+    F(WEAK_ARMOR_SPEED,          weakArmorSpeed,          (u32, GEN_COUNT - 1)) \
+    F(PROTEAN_LIBERO,            proteanLibero,           (u32, GEN_COUNT - 1)) \
+    F(INTREPID_SWORD,            intrepidSword,           (u32, GEN_COUNT - 1)) \
+    F(DAUNTLESS_SHIELD,          dauntlessShield,         (u32, GEN_COUNT - 1)) \
+    F(DISGUISE_HP_LOSS,          disguiseHpLoss,          (u32, GEN_COUNT - 1)) \
+    F(ABILITY_TRIGGER_CHANCE,    abilityTriggerChance,    (u32, GEN_COUNT - 1)) \
+    F(PICKUP_WILD,               pickupWild,              (u32, GEN_COUNT - 1)) \
+    F(MAGIC_GUARD,               magicGuard,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(BATTLE_BOND,               battleBond,              (u32, GEN_COUNT - 1)) \
+    F(ATE_MULTIPLIER,            ateMultiplier,           (u32, GEN_COUNT - 1)) \
+    F(DEFIANT_STICKY_WEB,        defiantStickyWeb,        (u32, GEN_COUNT - 1)) \
     /* Item settings */ \
     F(B_CONFUSE_BERRIES_HEAL,      confuseBerriesHeal,      (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
     F(B_X_ITEMS_BUFF,              xItemsBuff,              (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
@@ -196,17 +195,35 @@
     F(B_SNOW_WARNING,              snowWarning,             (u32, GEN_COUNT - 1)) \
     F(B_PREFERRED_ICE_WEATHER,     preferredIceWeather,     (u32, B_ICE_WEATHER_SNOW)) /* TODO: use in tests */ \
     /* Terrain settings */ \
-    F(B_TERRAIN_TYPE_BOOST,        terrainTypeBoost,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_SECRET_POWER_EFFECT,       secretPowerEffect,       (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_SECRET_POWER_ANIMATION,    secretPowerAnimation,    (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_NATURE_POWER_MOVES,        naturePowerMoves,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_CAMOUFLAGE_TYPES,          camouflageTypes,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(TERRAIN_TYPE_BOOST,        terrainTypeBoost,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(SECRET_POWER_EFFECT,       secretPowerEffect,       (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(SECRET_POWER_ANIMATION,    secretPowerAnimation,    (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(NATURE_POWER_MOVES,        naturePowerMoves,        (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(CAMOUFLAGE_TYPES,          camouflageTypes,         (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    /* Catching settings */ \
+    F(SEMI_INVULNERABLE_CATCH,   semiInvulnerableCatch,   (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(INCAPACITATED_CATCH_BONUS, incapacitatedCatchBonus, (u32, GEN_COUNT - 1)) \
+    F(LOW_LEVEL_CATCH_BONUS,     lowLevlCatchBonus,       (u32, GEN_COUNT - 1)) \
+    F(MISSING_BADGE_CATCH_MALUS, missingBadgeCatchMalue,  (u32, GEN_COUNT - 1)) \
+    F(CRITICAL_CAPTURE_IF_OWNED, criticalCaptureIfOwned,  (u32, GEN_COUNT - 1)) \
     /* Other settings */ \
-    F(B_WILD_NATURAL_ENEMIES,      wildNaturalEnemies,      (u32, TRUE))          /* TODO: use in tests */ \
-    F(B_AFFECTION_MECHANICS,       affectionMechanics,      (u32, TRUE))          /* TODO: use in tests */ \
-    F(B_OBEDIENCE_MECHANICS,       obedienceMechanics,      (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
-    F(B_USE_FROSTBITE,             useFrostbite,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(WILD_NATURAL_ENEMIES,      wildNaturalEnemies,      (u32, TRUE))          /* TODO: use in tests */ \
+    F(AFFECTION_MECHANICS,       affectionMechanics,      (u32, TRUE))          /* TODO: use in tests */ \
+    F(OBEDIENCE_MECHANICS,       obedienceMechanics,      (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(USE_FROSTBITE,             useFrostbite,            (u32, GEN_COUNT - 1)) /* TODO: use in tests */ \
+    F(SANDSTORM_SOLAR_BEAM,      standstormSolarBeam,     (u32, GEN_COUNT - 1)) \
+    F(COUNTER_MIRROR_COAT_ALLY,  counterMirrorCoatAlly,   (u32, GEN_COUNT - 1)) \
+    F(COUNTER_TRY_HIT_PARTNER,   counterTryHitPartner,    (u32, GEN_COUNT - 1)) \
 
+
+#define POKEMON_CONFIG_DEFINITIONS(F) \
+    F(POKERUS_ENABLED,           pokerusEnabled,          (u32, TRUE))          \
+    F(POKERUS_SPREAD_ADJACENCY,  pokerusSpreadAdjacency,  (u32, GEN_COUNT - 1)) \
+    F(POKERUS_SPREAD_DAYS_LEFT,  pokerusSpreadDaysLeft,   (u32, GEN_COUNT - 1)) \
+    F(POKERUS_INFECT_AGAIN,      pokerusInfectAgain,      (u32, GEN_COUNT - 1)) \
+    F(POKERUS_INFECT_EGG,        pokerusInfectEgg,        (u32, TRUE))          \
+    F(POKERUS_HERD_IMMUNITY,     pokerusHerdImmunity,     (u32, TRUE))          \
+    F(POKERUS_WEAK_VARIANT,      pokerusWeakVariant,      (u32, TRUE))          \
 
 #define GET_CONFIG_MAXIMUM(_typeMaxValue, ...) INVOKE_WITH_B(GET_CONFIG_MAXIMUM_, _typeMaxValue)
 #define GET_CONFIG_MAXIMUM_(_type, ...) FIRST(__VA_OPT__(FIRST(__VA_ARGS__),) MAX_BITS((sizeof(_type) * 8)))
@@ -215,7 +232,8 @@
 
 enum ConfigTag
 {
-    CONFIG_DEFINITIONS(UNPACK_CONFIG_ENUMS)
+    BATTLE_CONFIG_DEFINITIONS(UNPACK_CONFIG_ENUMS)
+    POKEMON_CONFIG_DEFINITIONS(UNPACK_CONFIG_ENUMS)
     CONFIG_COUNT
 };
 
